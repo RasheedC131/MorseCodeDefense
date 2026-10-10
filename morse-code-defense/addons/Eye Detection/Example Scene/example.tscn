@@ -69,7 +69,7 @@ is_face_to_detect = NodePath("CanvasLayer/VBoxContainer/Is_face_detectable")
 resume_button = NodePath("Resume")
 pause_button = NodePath("Pause")
 
-[node name="Node" type="Node" parent="." unique_id=1955906274]
+[node name="MorseParse" type="Node" parent="." unique_id=1955906274]
 script = ExtResource("1_6x56t")
 
 [node name="EyeDetection" type="Node" parent="." unique_id=494767839]
@@ -149,6 +149,6 @@ text = "Pause"
 
 [connection signal="face_detectable_state" from="EyeDetection" to="." method="_on_eye_detection_face_detectable_state"]
 [connection signal="telemetry_received" from="EyeDetection" to="." method="_on_eye_detection_telemetry_received"]
-[connection signal="telemetry_received" from="EyeDetection" to="Node" method="_on_eye_detection_telemetry_received"]
+[connection signal="telemetry_received" from="EyeDetection" to="MorseParse" method="_on_eye_detection_telemetry_received"]
 [connection signal="pressed" from="Resume" to="." method="_on_pressed"]
 [connection signal="pressed" from="Pause" to="." method="_on_pressed"]

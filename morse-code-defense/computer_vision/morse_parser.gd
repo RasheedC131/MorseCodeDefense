@@ -17,11 +17,10 @@ const MORSE_DICT = {
 }
 
 func _on_eye_detection_telemetry_received(RawText: String, Type: String, Code: String, Detail: String, Extra: String) -> void:
-	var status_code = Code
-	if(status_code == "EC"):
+	if(Code == "EC"):
 		closed_eyes = true
 		timeout_wait = false
-	if(status_code == "D"):
+	if(Code == "D"):
 		closed_eyes = false
 		translate_dur(Extra)
 		
