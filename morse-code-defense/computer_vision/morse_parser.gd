@@ -7,7 +7,7 @@ var sequence: String = ""
 var time_blink: float = 0.0 # the time since the last blink
 var timeout_wait: bool = false # wait to spell a letter
 var closed_eyes: bool = false 
-var keyboard_input_enabled: bool = false
+@export var keyboard_input_enabled: bool = false
 
 const MORSE_DICT = {
 	".-": "A", "-...": "B", "-.-.": "C", "-..": "D", ".": "E", "..-.": "F",
@@ -30,9 +30,9 @@ func _on_eye_detection_telemetry_received(RawText: String, Type: String, Code: S
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if keyboard_input_enabled and event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode == KEY_PERIOD:
+		if event.unicode == 46 or event.keycode == KEY_PERIOD or event.keycode == KEY_KP_PERIOD:
 			append_morse_symbol(".")
-		elif event.keycode == KEY_MINUS:
+		elif event.unicode == 45 or event.keycode == KEY_MINUS or event.keycode == KEY_KP_SUBTRACT:
 			append_morse_symbol("-")
 
 func set_keyboard_input_enabled(enabled: bool) -> void:
