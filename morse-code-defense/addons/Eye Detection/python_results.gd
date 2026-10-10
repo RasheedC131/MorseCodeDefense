@@ -154,7 +154,3 @@ func stop_process() -> void:
 
 func _exit_tree() -> void:
 	stop_process()
-
-
-
-
