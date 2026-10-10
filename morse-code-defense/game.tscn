@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://c1362cix2eytc" path="res://Agents/Enemy/Spawner/enemy_spawner.tscn" id="4_fc0e3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uvkxl"]
-vertices = PackedVector2Array(522, 542.09375, -19.898438, 543.8906, -19.890625, 542, 522, 542, 466, 46, 466, 302, 462, 238, 462, 50, 466, 306, 466, 466, 462, 430, 462, 322, 318, 318, 318, 210, 338, 242, 338, 430, 190, 366, 210, 318, 190, 226, 210, 222, 146, 222, 82, 226, 306, 46, 274, 50, 46, 466, 46, 306, -19.117188, 306, -19.046875, 286, 46, 286, 522, 302, 522, 306, 446, 322, 446, 242, 338, 238, 338, 190, 274, 190, 254, 210, 254, 50, 66, 158, 114, 158, 114, 174, 146, 174, 82, 258, 66, 258, 66, 306, 50, 306, 174, 398, 174, 366, 222, 46, 222, -2, 306, -2, 66, 50, 46, 46, 50, 398)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 17, 12, 15), PackedInt32Array(17, 16, 18, 19), PackedInt32Array(20, 19, 18, 21), PackedInt32Array(22, 4, 7, 23), PackedInt32Array(10, 9, 24, 15), PackedInt32Array(25, 26, 27, 28), PackedInt32Array(5, 29, 30, 8), PackedInt32Array(5, 8, 11, 31, 32, 6), PackedInt32Array(33, 6, 32, 14), PackedInt32Array(33, 14, 13), PackedInt32Array(34, 33, 13), PackedInt32Array(35, 34, 13, 36), PackedInt32Array(35, 36, 37, 23), PackedInt32Array(38, 39, 40, 21), PackedInt32Array(40, 41, 20, 21), PackedInt32Array(21, 42, 43), PackedInt32Array(43, 44, 45, 28), PackedInt32Array(46, 47, 16, 15), PackedInt32Array(48, 49, 50, 22, 23, 37), PackedInt32Array(48, 37, 51, 52), PackedInt32Array(28, 52, 51, 38), PackedInt32Array(28, 38, 21, 43), PackedInt32Array(25, 28, 45, 53), PackedInt32Array(24, 25, 53), PackedInt32Array(15, 24, 53, 46)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-48, -32, 552, -32, 552, 572, -50, 574)])
+vertices = PackedVector2Array(466, 46, 466, 302, 462, 238, 462, 50, 466, 306, 466, 466, 462, 430, 462, 322, 318, 318, 318, 210, 338, 242, 338, 430, 190, 366, 210, 318, 190, 226, 210, 222, 146, 222, 82, 226, 306, 46, 274, 50, 46, 466, 526.71094, 302, 526.77344, 306, -14.359375, 306, -14.578125, 286, 46, 286, 46, 306, 446, 322, 446, 242, 338, 238, 338, 190, 274, 190, 254, 210, 254, 50, 66, 158, 114, 158, 114, 174, 146, 174, 82, 258, 66, 258, 66, 306, 50, 306, 174, 398, 174, 366, 222, 46, 222, -2, 306, -2, 66, 50, 46, 46, 50, 398)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 9, 10, 11), PackedInt32Array(12, 13, 8, 11), PackedInt32Array(13, 12, 14, 15), PackedInt32Array(16, 15, 14, 17), PackedInt32Array(18, 0, 3, 19), PackedInt32Array(6, 5, 20, 11), PackedInt32Array(21, 22, 4, 1), PackedInt32Array(23, 24, 25, 26), PackedInt32Array(1, 4, 7, 27, 28, 2), PackedInt32Array(29, 2, 28, 10), PackedInt32Array(29, 10, 9), PackedInt32Array(30, 29, 9), PackedInt32Array(31, 30, 9, 32), PackedInt32Array(31, 32, 33, 19), PackedInt32Array(34, 35, 36, 17), PackedInt32Array(36, 37, 16, 17), PackedInt32Array(17, 38, 39), PackedInt32Array(39, 40, 41, 25), PackedInt32Array(42, 43, 12, 11), PackedInt32Array(44, 45, 46, 18, 19, 33), PackedInt32Array(44, 33, 47, 48), PackedInt32Array(25, 48, 47, 34), PackedInt32Array(25, 34, 17, 39), PackedInt32Array(26, 25, 41, 49), PackedInt32Array(20, 26, 49), PackedInt32Array(11, 20, 49, 42)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-48, -32, 552, -32, 560, 534, -42, 526)])
 parsed_geometry_type = 1
 source_geometry_mode = 1
 source_geometry_group_name = &"nav_geometry"
@@ -172,6 +172,7 @@ sources/0 = SubResource("TileSetAtlasSource_ryrav")
 [node name="Game" type="Node2D" unique_id=1379439759]
 
 [node name="TileLayers" type="NavigationRegion2D" parent="." unique_id=90838343]
+position = Vector2(320, 64)
 navigation_polygon = SubResource("NavigationPolygon_uvkxl")
 
 [node name="Ground" type="TileMapLayer" parent="TileLayers" unique_id=1684769272 groups=["nav_geometry"]]
@@ -183,9 +184,10 @@ tile_map_data = PackedByteArray("AAALAAAAAAADAAMAAAAKAAAAAAADAAMAAAAJAAAAAAADAAM
 tile_set = SubResource("TileSet_dh05n")
 
 [node name="Agents" type="Node2D" parent="." unique_id=1515079947]
+position = Vector2(297, 64)
 
 [node name="Player" parent="Agents" unique_id=189627708 instance=ExtResource("2_feb5d")]
 position = Vector2(263, 429)
 
 [node name="EnemySpawner" parent="." unique_id=1300413815 instance=ExtResource("4_fc0e3")]
-position = Vector2(263, 304)
+position = Vector2(560, 368)
