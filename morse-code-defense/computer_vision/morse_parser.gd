@@ -1,7 +1,7 @@
 extends Node
 
-@export var dot_or_dash: float = 0.5
-@export var letter_delay: float = 1.2
+@export var dot_or_dash: float = 0.34
+@export var letter_delay: float = 0.7
 
 var sequence: String = ""
 var time_blink: float = 0.0 # the time since the last blink
@@ -17,12 +17,6 @@ const MORSE_DICT = {
 }
 
 func _on_eye_detection_telemetry_received(RawText: String, Type: String, Code: String, Detail: String, Extra: String) -> void:
-	# CS/NB come from BlinkTracker: pause the letter timer while the eyes are closing,
-	# and pick it back up if it turned out to be a natural blink
-	if(Code == "CS"):
-		closed_eyes = true
-	if(Code == "NB"):
-		closed_eyes = false
 	if(Code == "EC"):
 		closed_eyes = true
 		timeout_wait = false
