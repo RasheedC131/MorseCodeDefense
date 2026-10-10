@@ -15,10 +15,11 @@ script = ExtResource("1_hud")
 [node name="EyeDetection" type="Node" parent="."]
 script = ExtResource("3_eyes")
 visualize_stream = true
-type_of_stream = 3
-color_of_right_eye = Color(0, 0.62300587, 0.5331381, 1)
-color_of_left_eye = Color(0.7630022, 0.44881856, 0, 1)
-color_of_right_eye2 = Color(0.5325273, 0.40998796, 1, 1)
+type_of_stream = 1
+color_of_right_eye = Color(1, 1, 1, 1)
+color_of_left_eye = Color(1, 1, 1, 1)
+color_of_right_eye2 = Color(0.35, 0.9, 1, 1)
+color_of_left_eye2 = Color(0.35, 0.9, 1, 1)
 
 [node name="MorseParser" type="Node" parent="."]
 script = ExtResource("2_parser")
@@ -87,8 +88,8 @@ theme_override_constants/separation = 4
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -100.0
-offset_right = 100.0
+offset_left = -130.0
+offset_right = 130.0
 offset_bottom = 64.0
 grow_horizontal = 2
 mouse_filter = 2
@@ -97,5 +98,6 @@ stretch_mode = 5
 flip_h = true
 script = ExtResource("4_preview")
 eye_sensor = NodePath("../EyeDetection")
+crop_to_eyes = true
 
 [connection signal="telemetry_received" from="EyeDetection" to="MorseParser" method="_on_eye_detection_telemetry_received"]

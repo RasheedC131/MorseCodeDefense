@@ -2,6 +2,10 @@ extends TextureRect
 class_name CameraPreview
 
 @export var eye_sensor: EyeDetection
+## Zoom in on the drawn eyes instead of showing the whole (mostly empty) camera frame.
+@export var crop_to_eyes: bool = false
+## Space kept around the eyes when cropping, in camera pixels.
+@export var crop_padding: int = 16
 
 @export_group("Advance options")
 @export var FramePath:String = "res://addons/Eye Detection/Python_files/dist/EyeDetectionHelper/Frame.png"
@@ -37,7 +41,10 @@ func _process(_delta: float) -> void:
 
 			var err := image.load_png_from_buffer(bytes)
 			if err == OK:
-				if texture == null:
+				if crop_to_eyes:
+					image = _crop_to_drawing(image)
+				# The crop changes size as the head moves, so rebuild the texture when it does
+				if texture == null or Vector2i(texture.get_size()) != image.get_size():
 					texture = ImageTexture.create_from_image(image)
 				else:
 					texture.update(image)
@@ -45,6 +52,14 @@ func _process(_delta: float) -> void:
 				return
 	else:
 		visible = false
+
+# Cuts the frame down to the area that has something drawn on it (the eyes).
+func _crop_to_drawing(image: Image) -> Image:
+	var used := image.get_used_rect()
+	if used.size.x == 0 or used.size.y == 0:
+		return image
+	var full := Rect2i(Vector2i.ZERO, image.get_size())
+	return image.get_region(used.grow(crop_padding).intersection(full))
 
 func _join_path(base_dir: String, relative_path: String) -> String:
 	var dir = base_dir.replace("\\", "/")
