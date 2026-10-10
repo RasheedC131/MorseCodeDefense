@@ -3,17 +3,14 @@ extends Node2D
 @onready var current_scene = get_tree().current_scene
 var enemy_scene = preload("res://Agents/Enemy/enemy.tscn")
 var spawnpoints := []
-#var alphabet := [
-	#"A", "B", "C", "D", 
-	#"E", "F", "G", "H", 
-	#"I", "J","K", "L",
-	#"M", "N", "O", "P",
-	#"Q", "R", "S", "T",
-	#"U", "V", "W", "X",
-	#"Y", "Z"
-#]
 var alphabet := [
-	"A", "B"
+	"A", "B", "C", "D", 
+	"E", "F", "G", "H", 
+	"I", "J","K", "L",
+	"M", "N", "O", "P",
+	"Q", "R", "S", "T",
+	"U", "V", "W", "X",
+	"Y", "Z"
 ]
 
 #Fill Spawnpoints array
@@ -25,13 +22,8 @@ func _ready() -> void:
 #Spawn Enemy
 func _on_timer_timeout() -> void:
 	var curr_spawnpoint = spawnpoints[randi() % spawnpoints.size()]
-	var enemy = enemy_scene.instantiate()
+	var enemy = enemy_scene.instantiate() as Enemy
 	enemy.position = curr_spawnpoint.global_position
 	enemy.letter = alphabet[randi() % alphabet.size()]
-	print(enemy.letter)
-	
-	#temp color
-	if enemy.letter == "A":
-		enemy.get_node("Sprite2D").modulate = Color.DEEP_PINK
 	
 	current_scene.add_child(enemy)

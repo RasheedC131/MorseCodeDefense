@@ -2,10 +2,13 @@ extends CharacterBody2D
 
 const SPEED : int = 100
 @onready var nav_agent := $PathFinder as Pathfinder
+@onready var letter_label := $"Letter Label" as Label
 var target_letter : String
 var is_helping : bool
 
 func _ready() -> void:
+	letter_label.text = target_letter
+	
 	#Get all enemies in scene
 	var enemies : Array[Enemy] = []
 	enemies.assign(get_tree().get_nodes_in_group("enemy"))
