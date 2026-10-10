@@ -1,9 +1,9 @@
 [gd_scene format=4 uid="uid://cadkmggjoukst"]
 
-[ext_resource type="Texture2D" uid="uid://dupmh3cwhgxa8" path="res://Assets/Grass.png" id="1_va5h7"]
-[ext_resource type="PackedScene" uid="uid://j6wvf2l2rhsm" path="res://Agents/player.tscn" id="2_efi3m"]
-[ext_resource type="PackedScene" uid="uid://dwpwlyoq76bta" path="res://Agents/Enemy/enemy.tscn" id="3_ro1rc"]
-[ext_resource type="PackedScene" uid="uid://vq0riwp5o5gk" path="res://Agents/Ally/ally.tscn" id="4_efi3m"]
+[ext_resource type="Texture2D" uid="uid://dupmh3cwhgxa8" path="res://Assets/Grass.png" id="1_a0xcv"]
+[ext_resource type="PackedScene" uid="uid://j6wvf2l2rhsm" path="res://Agents/TestLevel/player.tscn" id="2_1g68u"]
+[ext_resource type="PackedScene" uid="uid://dwpwlyoq76bta" path="res://Agents/Enemy/enemy.tscn" id="3_pkoes"]
+[ext_resource type="PackedScene" uid="uid://vq0riwp5o5gk" path="res://Agents/Ally/ally.tscn" id="4_lj5dw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vonw3"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -12,7 +12,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oi3di"]
-texture = ExtResource("1_va5h7")
+texture = ExtResource("1_a0xcv")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -91,7 +91,7 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_oi3di")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0b4ue"]
-texture = ExtResource("1_va5h7")
+texture = ExtResource("1_a0xcv")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -182,11 +182,11 @@ tile_set = SubResource("TileSet_dh05n")
 tile_map_data = PackedByteArray("AAADAAsAAAADAAMAAAAEAAQAAAADAAMAAAAEAAsAAAADAAMAAAAEAAwAAAADAAMAAAAFAAMAAAADAAMAAAAFAAQAAAADAAMAAAAFAAsAAAADAAMAAAAFAAwAAAADAAMAAAAGAAQAAAADAAMAAAALAAYAAAADAAMAAAALAAcAAAADAAMAAAALAAgAAAADAAMAAAAMAAYAAAADAAMAAAAMAAcAAAADAAMAAAAMAAgAAAADAAMAAAAOAAEAAAADAAMAAAAOAAIAAAADAAMAAAAPAAEAAAADAAMAAAAPAAIAAAADAAMAAAAPAAoAAAADAAMAAAAQAAEAAAADAAMAAAAQAAIAAAADAAMAAAAQAAkAAAADAAMAAAAQAAoAAAADAAMAAAAQAAsAAAADAAMAAAARAAoAAAADAAMAAAARAAsAAAADAAMAAAASAAoAAAADAAMAAAASAAsAAAADAAMAAAA=")
 tile_set = SubResource("TileSet_h1asn")
 
-[node name="Player" parent="." unique_id=189627708 instance=ExtResource("2_efi3m")]
+[node name="Player" parent="." unique_id=189627708 instance=ExtResource("2_1g68u")]
 position = Vector2(65, 527)
 
-[node name="Enemy" parent="." unique_id=1015531251 instance=ExtResource("3_ro1rc")]
+[node name="Enemy" parent="." unique_id=1015531251 instance=ExtResource("3_pkoes")]
 position = Vector2(763, 64)
 
-[node name="Ally" parent="." unique_id=994462329 instance=ExtResource("4_efi3m")]
+[node name="Ally" parent="." unique_id=994462329 instance=ExtResource("4_lj5dw")]
 position = Vector2(833, 504)
