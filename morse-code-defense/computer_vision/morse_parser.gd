@@ -23,6 +23,7 @@ func _ready() -> void:
 	GameSettings.keyboard_mode_changed.connect(set_keyboard_input_enabled)
 
 func _on_eye_detection_telemetry_received(RawText: String, Type: String, Code: String, Detail: String, Extra: String) -> void:
+	# Eye tracking keeps running in keyboard mode; blinks just don't count as Morse
 	if keyboard_input_enabled:
 		return
 	if(Code == "EC"):

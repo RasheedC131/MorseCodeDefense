@@ -5,7 +5,7 @@ extends TextureButton
 @export var duration := 0.12
 @export var settings_scene: PackedScene = preload("res://Main Menu/Settings/Settings.tscn")  # adjust path
 ## Scene name from scenes/scene_library.gd. Leave empty to open Settings instead.
-@export var go_to_scene := "calibration"
+@export var go_to_scene := ""
 
 var tween: Tween
 var settings_instance: Node
