@@ -4,6 +4,8 @@ extends TextureButton
 @export var press_scale := Vector2(0.95, 0.95)
 @export var duration := 0.12
 @export var settings_scene: PackedScene = preload("res://Main Menu/Settings/Settings.tscn")  # adjust path
+## Scene name from scenes/scene_library.gd. Leave empty to open Settings instead.
+@export var go_to_scene := ""
 
 var tween: Tween
 var settings_instance: Node
@@ -17,7 +19,7 @@ func _ready():
 	focus_exited.connect(func(): _animate(Vector2.ONE))
 	button_down.connect(func(): _animate(press_scale, 0.06))
 	button_up.connect(func(): _animate(hover_scale if is_hovered() else Vector2.ONE))
-	pressed.connect(_open_settings)
+	pressed.connect(_on_pressed)
 
 func _update_pivot():
 	pivot_offset = size / 2.0
@@ -28,6 +30,12 @@ func _animate(target: Vector2, time := duration):
 	tween = create_tween()
 	tween.tween_property(self, "scale", target, time)\
 		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+func _on_pressed():
+	if go_to_scene != "":
+		Scenes.go_to(go_to_scene)
+	else:
+		_open_settings()
 
 func _open_settings():
 	# Prevent opening multiple copies
