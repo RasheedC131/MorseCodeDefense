@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://rx15k4wshqcn"]
+
+[ext_resource type="Texture2D" uid="uid://cr6nelilg06km" path="res://Main Menu/Settings/SettingsMenu.png" id="1_bvb5x"]
+[ext_resource type="Texture2D" uid="uid://cmou1ie0swky6" path="res://Main Menu/Settings/Gemini_Generated_Image_t2e2yft2e2yft2e2.png" id="2_rng3r"]
+[ext_resource type="Script" uid="uid://dd45cbqvuf2ml" path="res://Main Menu/Settings/texture_button.gd" id="3_3d8ab"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2fv1l"]
+font_color = Color(0.8666667, 0.8627451, 0.85882354, 1)
+
+[node name="Control" type="Control" unique_id=405466203]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SettingsMenu" type="TextureRect" parent="." unique_id=593164256]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 50.0
+offset_right = 410.0
+offset_bottom = 595.0
+texture = ExtResource("1_bvb5x")
+expand_mode = 1
+
+[node name="Setting1" type="CheckBox" parent="SettingsMenu" unique_id=137231632]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 87.0
+offset_right = 286.0
+offset_bottom = 132.0
+text = "Setting 1"
+
+[node name="Setting2" type="CheckBox" parent="SettingsMenu" unique_id=1687372538]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 148.0
+offset_right = 286.0
+offset_bottom = 193.0
+text = "Setting 2"
+
+[node name="Slider 1" type="HSlider" parent="SettingsMenu" unique_id=727120544]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 203.0
+offset_right = 229.0
+offset_bottom = 275.0
+
+[node name="Label" type="Label" parent="SettingsMenu/Slider 1" unique_id=259426191]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 6.0
+offset_right = 103.0
+offset_bottom = 29.0
+text = "Slider 1"
+label_settings = SubResource("LabelSettings_2fv1l")
+horizontal_alignment = 1
+
+[node name="Close" type="TextureButton" parent="." unique_id=654289214]
+layout_mode = 0
+offset_left = 311.0
+offset_top = 46.0
+offset_right = 404.0
+offset_bottom = 133.0
+texture_normal = ExtResource("2_rng3r")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_3d8ab")
