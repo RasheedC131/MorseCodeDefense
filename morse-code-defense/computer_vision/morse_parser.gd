@@ -8,6 +8,8 @@ var time_blink: float = 0.0 # the time since the last blink
 var timeout_wait: bool = false # wait to spell a letter
 var closed_eyes: bool = false 
 @export var keyboard_input_enabled: bool = false
+## Optional: the eye tracker to pause while keyboard mode is on, so blinks are fully off.
+@export var eye_detection: EyeDetection
 
 const MORSE_DICT = {
 	".-": "A", "-...": "B", "-.-.": "C", "-..": "D", ".": "E", "..-.": "F",
@@ -46,6 +48,16 @@ func set_keyboard_input_enabled(enabled: bool) -> void:
 	time_blink = 0.0
 	timeout_wait = false
 	closed_eyes = false
+	# Deferred so the tracker has started before we try to pause it
+	_update_eye_tracker.call_deferred()
+
+func _update_eye_tracker() -> void:
+	if eye_detection == null:
+		return
+	if keyboard_input_enabled and not eye_detection.paused:
+		eye_detection.pause_process()
+	elif not keyboard_input_enabled and eye_detection.paused:
+		eye_detection.resume_process()
 
 func translate_dur(dur: String) -> void:
 	if(dur.to_float() <= dot_or_dash):
