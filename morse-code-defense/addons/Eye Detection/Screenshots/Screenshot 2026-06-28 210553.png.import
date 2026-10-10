@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmou1ie0swky6"
-path="res://.godot/imported/Gemini_Generated_Image_t2e2yft2e2yft2e2.png-7f8a448ad80c570ff84032233d06c653.ctex"
+uid="uid://cbkbofl5se7ve"
+path="res://.godot/imported/Screenshot 2026-06-28 210553.png-e40c566344bf7945e74fc3de1ce736db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Main Menu/Settings/Gemini_Generated_Image_t2e2yft2e2yft2e2.png"
-dest_files=["res://.godot/imported/Gemini_Generated_Image_t2e2yft2e2yft2e2.png-7f8a448ad80c570ff84032233d06c653.ctex"]
+source_file="res://addons/Eye Detection/Screenshots/Screenshot 2026-06-28 210553.png"
+dest_files=["res://.godot/imported/Screenshot 2026-06-28 210553.png-e40c566344bf7945e74fc3de1ce736db.ctex"]
 
 [params]
 
