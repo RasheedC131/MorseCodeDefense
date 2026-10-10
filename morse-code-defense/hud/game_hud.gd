@@ -14,15 +14,24 @@ signal letter_decoded(letter: String)
 const DIM := 0.25 # opacity of alphabet letters that no longer match
 const MATCH_COLOR := Color(1.0, 0.85, 0.3)
 const ERROR_COLOR := Color(1.0, 0.4, 0.4)
+const CAMERA_TIMEOUT := 20.0 # seconds to wait for the camera before starting anyway
+# Helper error codes that mean the camera or face model won't start
+const CAMERA_ERRORS := ["CNF", "COC", "MLC", "IE"]
 
 @onready var parser: MorseParser = $MorseParser
 @onready var mode_label: Label = $TopBar/Margin/Row/Mode
 @onready var sequence_label: Label = $TopBar/Margin/Row/Sequence
 @onready var letter_label: Label = $TopBar/Margin/Row/Letter
 @onready var alphabet: HBoxContainer = $BottomBar/Margin/Alphabet
+@onready var eye_detection: EyeDetection = $EyeDetection
+@onready var eyes_preview: CameraPreview = $EyesPreview
+@onready var loading: Control = $Loading
+@onready var loading_title: Label = $Loading/Box/Title
+@onready var loading_message: Label = $Loading/Box/Message
 
 var _cells := {} # morse code -> alphabet cell
 var _letter_tween: Tween
+var _waiting_for_camera := false
 
 
 func _ready() -> void:
@@ -34,6 +43,50 @@ func _ready() -> void:
 	_update_mode(GameSettings.keyboard_mode)
 	_on_sequence_changed("")
 	letter_label.text = ""
+	_wait_for_camera()
+
+
+# In blink mode, covers the game and pauses it until the camera sends its
+# first fresh frame. Keyboard players don't need the camera, so they skip it.
+func _wait_for_camera() -> void:
+	# _process_info is empty when the helper .exe couldn't be launched (e.g. not installed)
+	if GameSettings.keyboard_mode or eye_detection._process_info.is_empty():
+		return
+	_waiting_for_camera = true
+	loading.show()
+	get_tree().paused = true
+	eyes_preview.first_frame_ready.connect(_finish_loading, CONNECT_ONE_SHOT)
+	eye_detection.telemetry_received.connect(_on_tracker_message)
+	get_tree().create_timer(CAMERA_TIMEOUT).timeout.connect(_on_camera_timeout)
+
+
+func _on_tracker_message(_raw: String, type: String, code: String, detail: String, _extra: String) -> void:
+	if _waiting_for_camera and type == "ERROR" and code in CAMERA_ERRORS:
+		_start_without_camera("Camera couldn't start: %s" % detail)
+
+
+func _on_camera_timeout() -> void:
+	if _waiting_for_camera:
+		_start_without_camera("The camera is taking too long to start.")
+
+
+# Shows why, then lets the game start. Keyboard only (Settings) still works.
+func _start_without_camera(reason: String) -> void:
+	_waiting_for_camera = false
+	loading_title.text = "Starting without the camera"
+	loading_message.text = reason + "\nTurn on Keyboard only in Settings to play with . and -"
+	await get_tree().create_timer(3.0).timeout
+	_finish_loading()
+
+
+func _finish_loading() -> void:
+	_waiting_for_camera = false
+	if not loading.visible:
+		return
+	get_tree().paused = false
+	var tween := create_tween()
+	tween.tween_property(loading, "modulate:a", 0.0, 0.3)
+	tween.tween_callback(loading.hide)
 
 
 func _build_alphabet() -> void:
