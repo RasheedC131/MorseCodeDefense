@@ -68,6 +68,7 @@ func translate_dur(dur: String) -> void:
 func append_morse_symbol(symbol: String) -> void:
 	sequence += symbol
 	print("Current sequence ", sequence)
+	Audio.play("morse_dot" if symbol == "." else "morse_dash")
 	symbol_added.emit(symbol)
 	sequence_changed.emit(sequence)
 	time_blink = 0.0 # reset the blink timer
