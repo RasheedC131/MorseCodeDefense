@@ -35,6 +35,26 @@ shadow_offset = Vector2(-10, 2)
 stacked_shadow_count = 1
 stacked_shadow_0/outline_size = 10
 
+[sub_resource type="LabelSettings" id="LabelSettings_b61v4"]
+font = ExtResource("4_xq18m")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-5, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_87fhq"]
+font = ExtResource("4_xq18m")
+font_size = 45
+font_color = Color(0, 0, 0, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(-10, 2)
+stacked_shadow_count = 1
+stacked_shadow_0/outline_size = 10
+
 [sub_resource type="GDScript" id="GDScript_iwfq2"]
 script/source = "extends TextureRect
 
@@ -73,10 +93,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -252.0
-offset_top = -94.0
-offset_right = 173.0
-offset_bottom = 158.0
+offset_left = -212.5
+offset_top = -74.0
+offset_right = 212.5
+offset_bottom = 178.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_b61v4")
@@ -131,10 +151,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -252.0
-offset_top = -94.0
-offset_right = 173.0
-offset_bottom = 158.0
+offset_left = -212.5
+offset_top = 96.0
+offset_right = 212.5
+offset_bottom = 348.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_b61v4")
@@ -151,15 +171,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -137.0
-offset_top = -54.5
-offset_right = 174.0
-offset_bottom = 48.5
+offset_left = -146.5
+offset_top = -41.0
+offset_right = 164.5
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 75
-text = "PLAY"
-label_settings = SubResource("LabelSettings_rv5v2")
+text = "SETTINGS
+"
+label_settings = SubResource("LabelSettings_b61v4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -170,15 +191,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -137.0
-offset_top = -54.5
-offset_right = 174.0
-offset_bottom = 47.5
+offset_left = -146.5
+offset_top = -41.0
+offset_right = 164.5
+offset_bottom = 84.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 75
-text = "PLAY"
-label_settings = SubResource("LabelSettings_7cdnd")
+text = "SETTINGS
+"
+label_settings = SubResource("LabelSettings_87fhq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
