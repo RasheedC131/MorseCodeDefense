@@ -7,7 +7,7 @@ var sequence: String = ""
 var time_blink: float = 0.0 # the time since the last blink
 var timeout_wait: bool = false # wait to spell a letter
 var closed_eyes: bool = false 
-var keyboard_input_pending: bool = false
+var keyboard_input_enabled: bool = false
 
 const MORSE_DICT = {
 	".-": "A", "-...": "B", "-.-.": "C", "-..": "D", ".": "E", "..-.": "F",
@@ -18,21 +18,29 @@ const MORSE_DICT = {
 }
 
 func _on_eye_detection_telemetry_received(RawText: String, Type: String, Code: String, Detail: String, Extra: String) -> void:
+	if keyboard_input_enabled:
+		return
 	if(Code == "EC"):
 		closed_eyes = true
-		if not keyboard_input_pending:
-			timeout_wait = false
+		timeout_wait = false
 	if(Code == "D"):
 		closed_eyes = false
 		translate_dur(Extra)
 		
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
+	if keyboard_input_enabled and event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_PERIOD:
-			append_morse_symbol(".", true)
+			append_morse_symbol(".")
 		elif event.keycode == KEY_MINUS:
-			append_morse_symbol("-", true)
+			append_morse_symbol("-")
+
+func set_keyboard_input_enabled(enabled: bool) -> void:
+	keyboard_input_enabled = enabled
+	sequence = ""
+	time_blink = 0.0
+	timeout_wait = false
+	closed_eyes = false
 
 func translate_dur(dur: String) -> void:
 	if(dur.to_float() <= dot_or_dash):
@@ -40,9 +48,8 @@ func translate_dur(dur: String) -> void:
 	else:
 		append_morse_symbol("-")
 
-func append_morse_symbol(symbol: String, from_keyboard: bool = false) -> void:
+func append_morse_symbol(symbol: String) -> void:
 	sequence += symbol
-	keyboard_input_pending = keyboard_input_pending or from_keyboard
 	print("Current sequence ", sequence)
 	time_blink = 0.0 # reset the blink timer
 	timeout_wait = true # timeout now starts
@@ -50,7 +57,7 @@ func append_morse_symbol(symbol: String, from_keyboard: bool = false) -> void:
 func _process(delta: float) -> void:
 	# if eyes are closed, return
 	# this most likely means the user is still blinking a message
-	if closed_eyes and not keyboard_input_pending:
+	if not keyboard_input_enabled and closed_eyes:
 		return
 	if timeout_wait:
 		time_blink += delta # count time since last blink
@@ -59,7 +66,6 @@ func _process(delta: float) -> void:
 
 func resolve_letter():
 	timeout_wait = false # timeout is over
-	keyboard_input_pending = false
 	if sequence in MORSE_DICT:
 		var letter = MORSE_DICT[sequence]
 		print("The letter is: ", letter)

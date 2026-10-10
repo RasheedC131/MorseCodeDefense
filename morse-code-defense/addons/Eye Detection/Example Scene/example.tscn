@@ -147,8 +147,20 @@ grow_horizontal = 0
 theme_override_font_sizes/font_size = 62
 text = "Pause"
 
+[node name="KeyboardInput" type="CheckBox" parent="." unique_id=942785164]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -600.0
+offset_right = -330.0
+offset_bottom = 48.0
+grow_horizontal = 0
+text = "Keyboard input"
+
 [connection signal="face_detectable_state" from="EyeDetection" to="." method="_on_eye_detection_face_detectable_state"]
 [connection signal="telemetry_received" from="EyeDetection" to="." method="_on_eye_detection_telemetry_received"]
 [connection signal="telemetry_received" from="EyeDetection" to="MorseParse" method="_on_eye_detection_telemetry_received"]
+[connection signal="toggled" from="KeyboardInput" to="MorseParse" method="set_keyboard_input_enabled"]
 [connection signal="pressed" from="Resume" to="." method="_on_pressed"]
 [connection signal="pressed" from="Pause" to="." method="_on_pressed"]
