@@ -9,18 +9,21 @@
 bg_color = Color(0.07, 0.07, 0.09, 0.9)
 
 [node name="GameHUD" type="CanvasLayer"]
+process_mode = 3
 layer = 10
 script = ExtResource("1_hud")
 
 [node name="EyeDetection" type="Node" parent="."]
 script = ExtResource("3_eyes")
 visualize_stream = true
-type_of_stream = 3
-color_of_right_eye = Color(0, 0.62300587, 0.5331381, 1)
-color_of_left_eye = Color(0.7630022, 0.44881856, 0, 1)
-color_of_right_eye2 = Color(0.5325273, 0.40998796, 1, 1)
+type_of_stream = 1
+color_of_right_eye = Color(0.78039217, 0.92156863, 0.92156863, 1)
+color_of_left_eye = Color(0.78039217, 0.92156863, 0.92156863, 1)
+color_of_right_eye2 = Color(0.39215687, 0.101960786, 0.85882354, 1)
+color_of_left_eye2 = Color(0.39215687, 0.101960786, 0.85882354, 1)
 
 [node name="MorseParser" type="Node" parent="."]
+process_mode = 1
 script = ExtResource("2_parser")
 
 [node name="TopBar" type="PanelContainer" parent="."]
@@ -47,15 +50,6 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 14
 text = "Blink"
 vertical_alignment = 1
-
-[node name="EyesPreview" type="TextureRect" parent="TopBar/Margin/Row" node_paths=PackedStringArray("eye_sensor")]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-flip_h = true
-script = ExtResource("4_preview")
-eye_sensor = NodePath("../../../../EyeDetection")
 
 [node name="Sequence" type="Label" parent="TopBar/Margin/Row"]
 layout_mode = 2
@@ -91,5 +85,58 @@ theme_override_constants/margin_bottom = 4
 [node name="Alphabet" type="HBoxContainer" parent="BottomBar/Margin"]
 layout_mode = 2
 theme_override_constants/separation = 4
+
+[node name="EyesPreview" type="TextureRect" parent="." node_paths=PackedStringArray("eye_sensor")]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -130.0
+offset_right = 130.0
+offset_bottom = 64.0
+grow_horizontal = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+script = ExtResource("4_preview")
+eye_sensor = NodePath("../EyeDetection")
+crop_to_eyes = true
+
+[node name="Loading" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.07, 0.09, 1)
+
+[node name="Box" type="VBoxContainer" parent="Loading"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -50.0
+offset_right = 260.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Title" type="Label" parent="Loading/Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Starting camera..."
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="Loading/Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Look at the screen so the camera can find your eyes."
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [connection signal="telemetry_received" from="EyeDetection" to="MorseParser" method="_on_eye_detection_telemetry_received"]
