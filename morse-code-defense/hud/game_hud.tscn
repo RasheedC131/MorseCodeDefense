@@ -1,0 +1,95 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://hud/game_hud.gd" id="1_hud"]
+[ext_resource type="Script" path="res://computer_vision/morse_parser.gd" id="2_parser"]
+[ext_resource type="Script" path="res://addons/Eye Detection/python_results.gd" id="3_eyes"]
+[ext_resource type="Script" path="res://addons/Eye Detection/camera.gd" id="4_preview"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar"]
+bg_color = Color(0.07, 0.07, 0.09, 0.9)
+
+[node name="GameHUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="EyeDetection" type="Node" parent="."]
+script = ExtResource("3_eyes")
+visualize_stream = true
+type_of_stream = 3
+color_of_right_eye = Color(0, 0.62300587, 0.5331381, 1)
+color_of_left_eye = Color(0.7630022, 0.44881856, 0, 1)
+color_of_right_eye2 = Color(0.5325273, 0.40998796, 1, 1)
+
+[node name="MorseParser" type="Node" parent="."]
+script = ExtResource("2_parser")
+
+[node name="TopBar" type="PanelContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bar")
+
+[node name="Margin" type="MarginContainer" parent="TopBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="Row" type="HBoxContainer" parent="TopBar/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Mode" type="Label" parent="TopBar/Margin/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "Blink"
+vertical_alignment = 1
+
+[node name="EyesPreview" type="TextureRect" parent="TopBar/Margin/Row" node_paths=PackedStringArray("eye_sensor")]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+script = ExtResource("4_preview")
+eye_sensor = NodePath("../../../../EyeDetection")
+
+[node name="Sequence" type="Label" parent="TopBar/Margin/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Letter" type="Label" parent="TopBar/Margin/Row"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomBar" type="PanelContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -52.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bar")
+
+[node name="Margin" type="MarginContainer" parent="BottomBar"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 4
+
+[node name="Alphabet" type="HBoxContainer" parent="BottomBar/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[connection signal="telemetry_received" from="EyeDetection" to="MorseParser" method="_on_eye_detection_telemetry_received"]

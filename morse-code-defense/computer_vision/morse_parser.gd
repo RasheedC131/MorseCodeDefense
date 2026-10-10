@@ -1,4 +1,14 @@
 extends Node
+class_name MorseParser
+
+## A finished letter, e.g. "A". Connect gameplay to this one.
+signal letter_decoded(letter: String)
+## A dot or dash was just added: "." or "-".
+signal symbol_added(symbol: String)
+## The dots and dashes typed so far for the current letter ("" when it resets).
+signal sequence_changed(sequence: String)
+## The sequence didn't match any letter.
+signal invalid_sequence(sequence: String)
 
 @export var dot_or_dash: float = 0.34
 @export var letter_delay: float = 0.7
@@ -47,6 +57,7 @@ func set_keyboard_input_enabled(enabled: bool) -> void:
 	time_blink = 0.0
 	timeout_wait = false
 	closed_eyes = false
+	sequence_changed.emit(sequence)
 
 func translate_dur(dur: String) -> void:
 	if(dur.to_float() <= dot_or_dash):
@@ -57,6 +68,8 @@ func translate_dur(dur: String) -> void:
 func append_morse_symbol(symbol: String) -> void:
 	sequence += symbol
 	print("Current sequence ", sequence)
+	symbol_added.emit(symbol)
+	sequence_changed.emit(sequence)
 	time_blink = 0.0 # reset the blink timer
 	timeout_wait = true # timeout now starts
 
@@ -75,9 +88,12 @@ func resolve_letter():
 	if sequence in MORSE_DICT:
 		var letter = MORSE_DICT[sequence]
 		print("The letter is: ", letter)
+		letter_decoded.emit(letter)
 	else:
 		if sequence != "":
 			print("Not a letter")
+			invalid_sequence.emit(sequence)
 	
 	sequence = "" # reset the sequence
+	sequence_changed.emit(sequence)
 	
