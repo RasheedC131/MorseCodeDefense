@@ -29,4 +29,9 @@ func _on_timer_timeout() -> void:
 	enemy.position = curr_spawnpoint.global_position
 	enemy.letter = alphabet[randi() % alphabet.size()]
 	print(enemy.letter)
+	
+	#temp color
+	if enemy.letter == "A":
+		enemy.get_node("Sprite2D").modulate = Color.DEEP_PINK
+	
 	current_scene.add_child(enemy)
