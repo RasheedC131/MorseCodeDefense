@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dwpwlyoq76bta"]
+
+[ext_resource type="Script" uid="uid://bockhfhh6mahl" path="res://Agents/Enemy/enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://bde0cuq6c2jse" path="res://icon.svg" id="1_7k104"]
+[ext_resource type="PackedScene" uid="uid://e2danx30eh0" path="res://Agents/Path Finder/path_finder.tscn" id="3_4ekhx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
+radius = 30.066593
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1015531251 groups=["enemy"]]
+scale = Vector2(0.3, 0.3)
+collision_layer = 2
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_4gyqm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1472379995]
+modulate = Color(0.8662156, 2.117753e-06, 1.347661e-06, 1)
+texture = ExtResource("1_7k104")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1302237508]
+shape = SubResource("CircleShape2D_4gyqm")
+
+[node name="PathFinder" parent="." unique_id=542989051 instance=ExtResource("3_4ekhx")]

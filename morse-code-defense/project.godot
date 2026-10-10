@@ -11,26 +11,16 @@ config_version=5
 [application]
 
 config/name="MorseCodeDefense"
-run/main_scene="uid://bfcp3ahskphg1"
+run/main_scene="uid://dqq0ewcw41nsw"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-MediaPipeExternalFiles="*uid://hs0glpj7ncss"
-GDMPAndroid="*uid://5oe05m6xgquf"
-Audio="*res://audio/audio.gd"
-GameSettings="*res://settings/game_settings.gd"
-Scenes="*res://scenes/scene_manager.gd"
-
 [display]
 
+window/size/viewport_width=512
+window/size/viewport_height=512
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/Eye Detection/plugin.cfg", "res://addons/GDMP/plugin.cfg")
 
 [physics]
 

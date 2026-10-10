@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c1362cix2eytc"]
+
+[ext_resource type="Script" uid="uid://byueasd27k35" path="res://Agents/Enemy/Spawner/enemy_spawner.gd" id="1_l4lne"]
+
+[node name="EnemySpawner" type="Node2D" unique_id=1300413815]
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_l4lne")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1288153419]
+position = Vector2(0, -1106.667)
+
+[node name="Marker2D2" type="Marker2D" parent="." unique_id=1324811800]
+position = Vector2(-1073.333, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="." unique_id=1998717113]
+position = Vector2(1026.667, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=2076311613]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

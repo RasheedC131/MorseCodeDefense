@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://e2danx30eh0"]
+
+[ext_resource type="Script" uid="uid://hjls8y6k8820" path="res://Agents/Path Finder/path_finder.gd" id="1_fmkx2"]
+
+[node name="PathFinder" type="NavigationAgent2D" unique_id=542989051]
+debug_enabled = true
+script = ExtResource("1_fmkx2")
+
+[node name="Timer" type="Timer" parent="." unique_id=1974868530]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
