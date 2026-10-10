@@ -8,6 +8,7 @@ const MORSE_DICT = {
 	"-.--": "Y", "--..": "Z"
 }
 
+
 @onready var current_scene = get_tree().current_scene
 var enemy_scene = preload("res://Agents/Enemy/enemy.tscn")
 var spawnpoints := []

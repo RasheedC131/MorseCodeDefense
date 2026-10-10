@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dupmh3cwhgxa8" path="res://Assets/Grass.png" id="1_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://j6wvf2l2rhsm" path="res://Agents/TestLevel/player.tscn" id="2_feb5d"]
 [ext_resource type="PackedScene" uid="uid://c1362cix2eytc" path="res://Agents/Enemy/Spawner/enemy_spawner.tscn" id="4_fc0e3"]
-[ext_resource type="Script" path="res://audio/scene_music.gd" id="5_music"]
+[ext_resource type="Script" uid="uid://d2nbxguos85jh" path="res://audio/scene_music.gd" id="5_music"]
 [ext_resource type="PackedScene" path="res://hud/game_hud.tscn" id="6_hud"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uvkxl"]
@@ -194,8 +194,8 @@ position = Vector2(263, 429)
 [node name="EnemySpawner" parent="." unique_id=1300413815 instance=ExtResource("4_fc0e3")]
 position = Vector2(560, 368)
 
-[node name="Music" type="Node" parent="."]
+[node name="Music" type="Node" parent="." unique_id=1639946025]
 script = ExtResource("5_music")
 track = "battle"
 
-[node name="GameHUD" parent="." instance=ExtResource("6_hud")]
+[node name="GameHUD" parent="." unique_id=1025126077 instance=ExtResource("6_hud")]

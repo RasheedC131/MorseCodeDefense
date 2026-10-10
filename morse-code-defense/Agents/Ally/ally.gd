@@ -26,14 +26,17 @@ func _ready() -> void:
 					lock_target(i)
 					break
 	
-	if is_instance_valid(occupied_target):
-		lock_target(occupied_target)
 	
-	#Didnt find a match
+	
+	#Didnt find a solo match
 	if not is_instance_valid(nav_agent.target):
-		print("bye bye")
-		await get_tree().create_timer(1).timeout
-		queue_free()
+		#Revert to helping
+		if is_instance_valid(occupied_target) :
+			lock_target(occupied_target)
+		else: #No enemies of the letter at all
+			print("bye bye")
+			await get_tree().create_timer(1).timeout
+			queue_free()
 	
 	get_tree().node_added.connect(_on_node_added_to_game)
 

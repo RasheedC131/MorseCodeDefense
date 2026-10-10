@@ -17,8 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MediaPipeExternalFiles="*uid://hs0glpj7ncss"
-GDMPAndroid="*uid://5oe05m6xgquf"
 Audio="*res://audio/audio.gd"
 GameSettings="*res://settings/game_settings.gd"
 Scenes="*res://scenes/scene_manager.gd"
@@ -30,7 +28,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/Eye Detection/plugin.cfg", "res://addons/GDMP/plugin.cfg")
+enabled=PackedStringArray("res://addons/Eye Detection/plugin.cfg")
 
 [physics]
 
