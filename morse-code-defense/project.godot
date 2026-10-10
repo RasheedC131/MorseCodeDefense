@@ -11,13 +11,23 @@ config_version=5
 [application]
 
 config/name="MorseCodeDefense"
+run/main_scene="uid://bbnt6j4uy6awu"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MediaPipeExternalFiles="*uid://hs0glpj7ncss"
+GDMPAndroid="*uid://5oe05m6xgquf"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Eye Detection/plugin.cfg", "res://addons/GDMP/plugin.cfg")
 
 [physics]
 
