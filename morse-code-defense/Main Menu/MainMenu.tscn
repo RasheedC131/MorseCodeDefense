@@ -6,8 +6,7 @@
 [ext_resource type="Script" uid="uid://de1ej5v6jfiv7" path="res://Main Menu/play.gd" id="3_b61v4"]
 [ext_resource type="FontFile" uid="uid://dsaajhs1x4pyh" path="res://Main Menu/CinzelDecorative-Bold.ttf" id="4_xq18m"]
 [ext_resource type="Texture2D" uid="uid://y2la11617vgc" path="res://Main Menu/Title3.png" id="5_ye3th"]
-
-[sub_resource type="GDScript" id="GDScript_6x56t"]
+[ext_resource type="Script" path="res://Main Menu/main_menu.gd" id="6_menu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_grh7o"]
 shader = ExtResource("3_87fhq")
@@ -77,7 +76,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_6x56t")
+script = ExtResource("6_menu")
 
 [node name="Background" type="TextureRect" parent="." unique_id=305911510]
 layout_mode = 0
