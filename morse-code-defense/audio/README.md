@@ -57,6 +57,10 @@ Audio.set_volume("SFX", 0.5)                       # 0.0 to 1.0, for a settings 
 Audio.get_volume("Music")
 ```
 
+### Music for a whole scene
+
+To start a track when a scene loads, without writing code: add a **Node** to the scene, attach `res://audio/scene_music.gd`, and set **Track** in the Inspector (e.g. `battle`). `game.tscn` does this with its `Music` node.
+
 Volume buses: `Master`, `Music`, `SFX`, `UI`. They're created automatically if they're not in the project's bus layout.
 
 ## Where to hook up sounds
