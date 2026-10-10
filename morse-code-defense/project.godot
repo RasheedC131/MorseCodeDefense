@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MorseCodeDefense"
-run/main_scene="uid://bbnt6j4uy6awu"
+run/main_scene="res://ui/main_menu.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

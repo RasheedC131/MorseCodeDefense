@@ -6,6 +6,8 @@ class_name BlinkTracker
 
 @export var auto_start: bool = true
 @export var log_events: bool = false
+## Use the thresholds saved by the calibration screen (BlinkSettings) instead of the values below.
+@export var use_saved_settings: bool = true
 
 @export_group("Python")
 ## Leave empty to use MorseCodeDefense/.venv, falling back to "python" on PATH.
@@ -52,6 +54,10 @@ var _lines: PackedStringArray = []
 
 
 func _ready() -> void:
+	if use_saved_settings:
+		close_threshold = BlinkSettings.get_value("close_threshold", close_threshold)
+		open_threshold = BlinkSettings.get_value("open_threshold", open_threshold)
+		min_blink = BlinkSettings.get_value("min_blink", min_blink)
 	if auto_start:
 		start()
 

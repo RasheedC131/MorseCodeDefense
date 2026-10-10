@@ -1,0 +1,150 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://ui/main_menu.gd" id="1_menu"]
+[ext_resource type="Theme" path="res://ui/theme/main_theme.tres" id="2_theme"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_menu")
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.07, 0.08, 0.1, 1)
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Menu" type="VBoxContainer" parent="Center"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Logo" type="TextureRect" parent="Center/Menu"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="Center/Menu"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"TitleLabel"
+text = "MORSE CODE DEFENSE"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/Menu"]
+layout_mode = 2
+theme_type_variation = &"SubtitleLabel"
+text = "-- --- .-. ... .   -.-. --- -.. ."
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Center/Menu"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Buttons" type="VBoxContainer" parent="Center/Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 12
+
+[node name="PlayButton" type="Button" parent="Center/Menu/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 56)
+layout_mode = 2
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="Center/Menu/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 56)
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="Center/Menu/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(320, 56)
+layout_mode = 2
+text = "Quit"
+
+[node name="Settings" type="VBoxContainer" parent="Center"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="SettingsTitle" type="Label" parent="Center/Settings"]
+layout_mode = 2
+theme_type_variation = &"HeadingLabel"
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="CalibrationStatus" type="Label" parent="Center/Settings"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"MutedLabel"
+text = "Not calibrated yet"
+horizontal_alignment = 1
+
+[node name="CalibrateButton" type="Button" parent="Center/Settings"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "Calibrate & test blinks"
+
+[node name="SoundCues" type="CheckBox" parent="Center/Settings"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+button_pressed = true
+text = "Blink sound cues (tick = dot, tone = dash)"
+
+[node name="BackButton" type="Button" parent="Center/Settings"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+text = "Back"
+
+[node name="Message" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"MessageLabel"
+horizontal_alignment = 1

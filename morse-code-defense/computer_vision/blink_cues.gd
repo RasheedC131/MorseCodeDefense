@@ -18,6 +18,7 @@ var _dash_played := false
 
 
 func _ready() -> void:
+	enabled = BlinkSettings.get_value("sound_cues", enabled)
 	_dot_sound = _make_tone(1200.0, 0.05)
 	_dash_sound = _make_tone(500.0, 0.15)
 	_player = AudioStreamPlayer.new()

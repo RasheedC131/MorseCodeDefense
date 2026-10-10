@@ -3,6 +3,7 @@ extends Control
 ## timing sliders, and the Morse output from morse_parser.gd.
 
 const MorseParser := preload("res://computer_vision/morse_parser.gd")
+const MAIN_MENU := "res://ui/main_menu.tscn"
 
 var tracker: BlinkTracker
 var parser: Node
@@ -28,6 +29,8 @@ func _ready() -> void:
 	add_child(tracker)
 
 	parser = MorseParser.new()
+	parser.dot_or_dash = BlinkSettings.get_value("dot_or_dash", parser.dot_or_dash)
+	parser.letter_delay = BlinkSettings.get_value("letter_delay", parser.letter_delay)
 	add_child(parser)
 	tracker.telemetry_received.connect(parser._on_eye_detection_telemetry_received)
 
@@ -92,12 +95,35 @@ func _on_calibration_step(step: String, close_th: float, open_th: float) -> void
 	else:
 		_calibrate_button.text = "Calibrate again"
 		_calibrate_button.disabled = false
+		BlinkSettings.set_value("close_threshold", close_th)
+		BlinkSettings.set_value("open_threshold", open_th)
 		_add_log("[color=green]Calibrated: closed ≥ %.2f, open ≤ %.2f[/color]" % [close_th, open_th])
 
 
 func _set_dash_boundary(seconds: float) -> void:
 	parser.dot_or_dash = seconds
 	cues.dash_after = seconds
+	BlinkSettings.set_value("dot_or_dash", seconds)
+
+
+func _set_min_blink(seconds: float) -> void:
+	tracker.set_min_blink(seconds)
+	BlinkSettings.set_value("min_blink", seconds)
+
+
+func _set_letter_delay(seconds: float) -> void:
+	parser.letter_delay = seconds
+	BlinkSettings.set_value("letter_delay", seconds)
+
+
+func _set_sound_cues(on: bool) -> void:
+	cues.enabled = on
+	BlinkSettings.set_value("sound_cues", on)
+
+
+func _back_to_menu() -> void:
+	if ResourceLoader.exists(MAIN_MENU):
+		get_tree().change_scene_to_file(MAIN_MENU)
 
 
 func _clear_text() -> void:
@@ -131,6 +157,12 @@ func _build_ui() -> void:
 	left.add_theme_constant_override("separation", 10)
 	cols.add_child(left)
 
+	var back := Button.new()
+	back.text = "← Main menu"
+	back.size_flags_horizontal = SIZE_SHRINK_BEGIN
+	back.pressed.connect(_back_to_menu)
+	left.add_child(back)
+
 	left.add_child(_label("Blink tracker test", 28))
 	_face_label = _label("Face: waiting for camera…")
 	left.add_child(_face_label)
@@ -154,16 +186,16 @@ func _build_ui() -> void:
 	left.add_child(_calibrate_button)
 
 	left.add_child(_slider("Ignore blinks shorter than (s)", 0.05, 0.5, tracker.min_blink,
-		func(v): tracker.set_min_blink(v)))
+		_set_min_blink))
 	left.add_child(_slider("Dot / dash boundary (s)", 0.2, 1.2, parser.dot_or_dash,
-		func(v): _set_dash_boundary(v)))
+		_set_dash_boundary))
 	left.add_child(_slider("Letter gap (s)", 0.3, 2.5, parser.letter_delay,
-		func(v): parser.letter_delay = v))
+		_set_letter_delay))
 
 	var sound := CheckBox.new()
 	sound.text = "Sound cues (tick = dot, tone = dash)"
-	sound.button_pressed = true
-	sound.toggled.connect(func(on): cues.enabled = on)
+	sound.button_pressed = cues.enabled
+	sound.toggled.connect(_set_sound_cues)
 	left.add_child(sound)
 
 	var preview := CheckBox.new()
