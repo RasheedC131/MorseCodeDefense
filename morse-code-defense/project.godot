@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 
 MediaPipeExternalFiles="*uid://hs0glpj7ncss"
 GDMPAndroid="*uid://5oe05m6xgquf"
+Audio="*res://audio/audio.gd"
 
 [display]
 
