@@ -12,7 +12,7 @@ class_name SceneLibrary
 
 const SCENES := {
 	"main_menu": "res://Main Menu/MainMenu.tscn",
-	"g": "", # the main level, where Play leads
-	"game": "res://addons/Eye Detection/Example Scene/example.tscn", # blink calibration
+	"game": "res://game.tscn", # Rasheed's pathfinding level, where Play leads
+	"eye_detection_test": "res://addons/Eye Detection/Example Scene/example.tscn",
 	"sound_test": "res://audio/sound_test.tscn",
 }
