@@ -18,8 +18,7 @@ script/source = "extends Control
 @export var pause_button:Button
 
 func _ready() -> void:
-	# Deferred so it runs after MorseParse may have paused tracking for keyboard mode
-	_sync_buttons.call_deferred()
+	_sync_buttons()
 
 func _sync_buttons() -> void:
 	pause_button.visible = not eye_detection.paused
@@ -73,9 +72,8 @@ is_face_to_detect = NodePath("CanvasLayer/VBoxContainer/Is_face_detectable")
 resume_button = NodePath("Resume")
 pause_button = NodePath("Pause")
 
-[node name="MorseParse" type="Node" parent="." unique_id=1955906274 node_paths=PackedStringArray("eye_detection")]
+[node name="MorseParse" type="Node" parent="." unique_id=1955906274]
 script = ExtResource("1_6x56t")
-eye_detection = NodePath("../EyeDetection")
 
 [node name="EyeDetection" type="Node" parent="." unique_id=494767839]
 script = ExtResource("1_dayeg")
