@@ -21,6 +21,7 @@ MediaPipeExternalFiles="*uid://hs0glpj7ncss"
 GDMPAndroid="*uid://5oe05m6xgquf"
 Audio="*res://audio/audio.gd"
 GameSettings="*res://settings/game_settings.gd"
+Scenes="*res://scenes/scene_manager.gd"
 
 [display]
 
