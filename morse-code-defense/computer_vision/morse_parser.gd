@@ -17,6 +17,11 @@ const MORSE_DICT = {
 	"-.--": "Y", "--..": "Z"
 }
 
+func _ready() -> void:
+	# Keyboard mode comes from the Settings screen (GameSettings autoload)
+	set_keyboard_input_enabled(GameSettings.keyboard_mode)
+	GameSettings.keyboard_mode_changed.connect(set_keyboard_input_enabled)
+
 func _on_eye_detection_telemetry_received(RawText: String, Type: String, Code: String, Detail: String, Extra: String) -> void:
 	if keyboard_input_enabled:
 		return

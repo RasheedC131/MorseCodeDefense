@@ -1,9 +1,9 @@
-extends Control
+extends TextureButton
 
-@export var close_button: TextureButton = 
+# Attached to the Close button. Closes the whole settings screen, not just this button.
 
 func _ready():
-	close_button.pressed.connect(_close)
+	pressed.connect(_close)
 
 func _unhandled_input(event):
 	# Optional: also close with the Escape key
@@ -14,4 +14,4 @@ func _unhandled_input(event):
 func _close():
 	# Uncomment if you paused the game when opening settings
 	# get_tree().paused = false
-	queue_free()
+	owner.queue_free()
