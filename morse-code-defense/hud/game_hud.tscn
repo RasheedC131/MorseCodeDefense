@@ -16,10 +16,10 @@ script = ExtResource("1_hud")
 script = ExtResource("3_eyes")
 visualize_stream = true
 type_of_stream = 1
-color_of_right_eye = Color(1, 1, 1, 1)
-color_of_left_eye = Color(1, 1, 1, 1)
-color_of_right_eye2 = Color(0.35, 0.9, 1, 1)
-color_of_left_eye2 = Color(0.35, 0.9, 1, 1)
+color_of_right_eye = Color(0.78039217, 0.92156863, 0.92156863, 1)
+color_of_left_eye = Color(0.78039217, 0.92156863, 0.92156863, 1)
+color_of_right_eye2 = Color(0.39215687, 0.101960786, 0.85882354, 1)
+color_of_left_eye2 = Color(0.39215687, 0.101960786, 0.85882354, 1)
 
 [node name="MorseParser" type="Node" parent="."]
 script = ExtResource("2_parser")
