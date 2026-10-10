@@ -1,7 +1,10 @@
 extends CharacterBody2D
+class_name Enemy
 
-const SPEED : int = 200
+const SPEED : int = 100
 @onready var nav_agent := $PathFinder as Pathfinder
+var letter : String
+var is_targeted : bool
 
 func _ready() -> void:
 	var player = get_tree().get_first_node_in_group("player")

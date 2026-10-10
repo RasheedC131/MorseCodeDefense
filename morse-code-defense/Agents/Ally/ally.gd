@@ -1,13 +1,26 @@
 extends CharacterBody2D
 
-const SPEED : int = 200
+const SPEED : int = 100
 @onready var nav_agent := $PathFinder as Pathfinder
+var target_letter : String
 
 func _ready() -> void:
-	var enemy = get_tree().get_first_node_in_group("enemy")
+	#Get all enimes in scene
+	var enimes : Array[Enemy] = []
+	enimes.assign(get_tree().get_nodes_in_group("enemy"))
 	
-	if is_instance_valid(enemy):
-		nav_agent.target = enemy
+	#Find Enemy with matching letter
+	if not enimes.is_empty():
+		for i in enimes:
+			if i.letter == target_letter:
+				print("Match Found")
+				nav_agent.target = i
+				break
+	
+	if not is_instance_valid(nav_agent.target):
+		print("bye bye")
+		await get_tree().create_timer(1).timeout
+		queue_free()
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(nav_agent):

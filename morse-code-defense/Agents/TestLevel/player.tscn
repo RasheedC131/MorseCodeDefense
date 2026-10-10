@@ -23,7 +23,7 @@ shape = SubResource("RectangleShape2D_uvkxl")
 position = Vector2(0, 163.33331)
 
 [node name="Timer" type="Timer" parent="." unique_id=735189611]
-wait_time = 3.0
+wait_time = 5.0
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
