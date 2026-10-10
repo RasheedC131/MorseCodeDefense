@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d3lgk0jpire61"]
+
+[ext_resource type="Texture2D" uid="uid://b6k585hsrhf4b" path="res://GameUI/Timer/Timer.png" id="1_46j5e"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1788644186]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=36316978]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -103.5
+offset_top = 5.0
+offset_right = 70.0
+offset_bottom = 63.0
+grow_horizontal = 2
+texture = ExtResource("1_46j5e")
+expand_mode = 1
