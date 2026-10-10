@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dupmh3cwhgxa8" path="res://Assets/Grass.png" id="1_va5h7"]
 [ext_resource type="PackedScene" uid="uid://j6wvf2l2rhsm" path="res://Agents/player.tscn" id="2_efi3m"]
 [ext_resource type="PackedScene" uid="uid://dwpwlyoq76bta" path="res://Agents/Enemy/enemy.tscn" id="3_ro1rc"]
+[ext_resource type="PackedScene" uid="uid://vq0riwp5o5gk" path="res://Agents/Ally/ally.tscn" id="4_efi3m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vonw3"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -182,6 +183,10 @@ tile_map_data = PackedByteArray("AAADAAsAAAADAAMAAAAEAAQAAAADAAMAAAAEAAsAAAADAAM
 tile_set = SubResource("TileSet_h1asn")
 
 [node name="Player" parent="." unique_id=189627708 instance=ExtResource("2_efi3m")]
-position = Vector2(811, 523)
+position = Vector2(65, 527)
 
 [node name="Enemy" parent="." unique_id=1015531251 instance=ExtResource("3_ro1rc")]
+position = Vector2(763, 64)
+
+[node name="Ally" parent="." unique_id=994462329 instance=ExtResource("4_efi3m")]
+position = Vector2(833, 504)

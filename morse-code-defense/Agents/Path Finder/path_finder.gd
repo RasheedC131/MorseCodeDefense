@@ -5,6 +5,7 @@ var target : Node2D
 @onready var agent := get_parent() as CharacterBody2D
 
 func _ready() -> void:
+	await get_tree().physics_frame
 	make_path()
 
 func get_next_dir() -> Vector2:
@@ -15,6 +16,8 @@ func get_next_dir() -> Vector2:
 func make_path() -> void:
 	if is_instance_valid(target):
 		target_position = target.global_position
+	else:
+		print(agent.name, " CANNOT FIND TARGET NODE!")
 
 func _on_timer_timeout() -> void:
 	make_path()
