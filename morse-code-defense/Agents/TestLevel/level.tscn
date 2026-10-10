@@ -190,3 +190,8 @@ position = Vector2(763, 64)
 
 [node name="Ally" parent="." unique_id=994462329 instance=ExtResource("4_lj5dw")]
 position = Vector2(833, 504)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=696216790]
+position = Vector2(504, 386)
+scale = Vector2(0.3, 0.3)
+zoom = Vector2(0.43, 0.43)
