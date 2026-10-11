@@ -7,6 +7,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_4gyqm"]
 radius = 30.066593
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_uvkxl"]
+radius = 123.33333
+
 [node name="Enemy" type="CharacterBody2D" unique_id=1015531251 groups=["enemy"]]
 scale = Vector2(0.3, 0.3)
 collision_layer = 2
@@ -39,3 +42,14 @@ offset_bottom = -64.33333
 theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Attack Range" type="Area2D" parent="." unique_id=976499173]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Range" unique_id=2109458616]
+shape = SubResource("CircleShape2D_uvkxl")
+
+[node name="AttackCooldown" type="Timer" parent="." unique_id=1177526734]
+
+[connection signal="body_entered" from="Attack Range" to="." method="_on_attack_range_body_entered"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

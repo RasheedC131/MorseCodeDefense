@@ -2,6 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://bde0cuq6c2jse" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://tv25s6ng0l5c" path="res://Agents/TestLevel/player.gd" id="1_benua"]
+[ext_resource type="Script" uid="uid://be8p3a4c2t716" path="res://Agents/Ally/Ally Types/AllyData.gd" id="2_1x6c6"]
+[ext_resource type="Resource" uid="uid://bt6tagcy7ln5n" path="res://Agents/Ally/Ally Types/weak_ally.tres" id="3_nxgf8"]
+[ext_resource type="Resource" uid="uid://jk6uk4v2ynj8" path="res://Agents/Ally/Ally Types/basic_ally.tres" id="4_lm6dw"]
+[ext_resource type="Resource" uid="uid://c8sprne8wtoa0" path="res://Agents/Ally/Ally Types/tough_ally.tres" id="5_8mg1j"]
+[ext_resource type="Resource" uid="uid://dsvg3kbtxqnc6" path="res://Agents/Ally/Ally Types/boss_ally.tres" id="6_a3ct5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uvkxl"]
 size = Vector2(128, 129)
@@ -11,6 +16,7 @@ scale = Vector2(0.3, 0.3)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_benua")
+ally_tier_data = Array[ExtResource("2_1x6c6")]([ExtResource("3_nxgf8"), ExtResource("4_lm6dw"), ExtResource("5_8mg1j"), ExtResource("6_a3ct5")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=692678304]
 texture = ExtResource("1_4flbx")

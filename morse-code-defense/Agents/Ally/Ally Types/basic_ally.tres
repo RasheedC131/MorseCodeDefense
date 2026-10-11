@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AlleyData" format=3 uid="uid://jk6uk4v2ynj8"]
+
+[ext_resource type="Script" uid="uid://be8p3a4c2t716" path="res://Agents/Ally/Ally Types/AllyData.gd" id="1_krhhl"]
+
+[resource]
+script = ExtResource("1_krhhl")
+speed = 50.0
+max_health = 3
+attack_speed = 0.4
+scale = 0.3
+metadata/_custom_type_script = "uid://be8p3a4c2t716"
