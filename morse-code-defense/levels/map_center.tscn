@@ -1,0 +1,134 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_level"]
+[ext_resource type="PackedScene" path="res://Agents/TestLevel/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://Agents/Enemy/Spawner/enemy_spawner.tscn" id="3_spawner"]
+[ext_resource type="Script" path="res://audio/scene_music.gd" id="4_music"]
+[ext_resource type="PackedScene" path="res://hud/game_hud.tscn" id="5_hud"]
+
+[node name="MapCenter" type="Node2D"]
+script = ExtResource("1_level")
+
+[node name="Placeholder" type="Node2D" parent="."]
+
+[node name="Rock" type="ColorRect" parent="Placeholder"]
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+color = Color(0.15, 0.1, 0.23, 1.0)
+
+[node name="Ground" type="Node2D" parent="Placeholder"]
+
+[node name="Walk0" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(770.2, 330.0, 771.7, 362.7, 761.6, 395.4, 736.0, 423.4, 700.3, 444.0, 661.5, 460.0, 621.0, 474.2, 576.0, 483.6, 528.5, 482.2, 484.9, 468.3, 448.4, 447.1, 415.8, 423.5, 385.9, 397.0, 364.7, 365.3, 360.2, 330.0, 372.0, 295.9, 392.2, 265.2, 415.5, 236.3, 444.6, 209.5, 483.7, 189.7, 529.7, 181.7, 576.0, 183.6, 619.8, 189.7, 662.8, 198.1, 704.0, 212.6, 736.4, 236.4, 755.3, 266.8, 764.4, 298.5)
+
+[node name="Walk1" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(-48.0, 224.0, 150.0, 224.0, 150.0, 300.0, -48.0, 300.0)
+
+[node name="Walk2" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(74.0, 224.0, 150.0, 224.0, 150.0, 586.0, 74.0, 586.0)
+
+[node name="Walk3" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(74.0, 510.0, 370.0, 510.0, 370.0, 586.0, 74.0, 586.0)
+
+[node name="Walk4" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(294.0, 392.0, 370.0, 392.0, 370.0, 586.0, 294.0, 586.0)
+
+[node name="Walk5" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(294.0, 392.0, 458.0, 392.0, 458.0, 468.0, 294.0, 468.0)
+
+[node name="Walk6" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(432.0, 12.0, 508.0, 12.0, 508.0, 160.0, 432.0, 160.0)
+
+[node name="Walk7" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(224.0, 84.0, 508.0, 84.0, 508.0, 160.0, 224.0, 160.0)
+
+[node name="Walk8" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(224.0, 84.0, 300.0, 84.0, 300.0, 278.0, 224.0, 278.0)
+
+[node name="Walk9" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(224.0, 202.0, 458.0, 202.0, 458.0, 278.0, 224.0, 278.0)
+
+[node name="Walk10" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(1002.0, 360.0, 1200.0, 360.0, 1200.0, 436.0, 1002.0, 436.0)
+
+[node name="Walk11" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(1002.0, 74.0, 1078.0, 74.0, 1078.0, 436.0, 1002.0, 436.0)
+
+[node name="Walk12" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(782.0, 74.0, 1078.0, 74.0, 1078.0, 150.0, 782.0, 150.0)
+
+[node name="Walk13" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(782.0, 74.0, 858.0, 74.0, 858.0, 268.0, 782.0, 268.0)
+
+[node name="Walk14" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(694.0, 192.0, 858.0, 192.0, 858.0, 268.0, 694.0, 268.0)
+
+[node name="Walk15" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(644.0, 500.0, 720.0, 500.0, 720.0, 648.0, 644.0, 648.0)
+
+[node name="Walk16" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(644.0, 500.0, 928.0, 500.0, 928.0, 576.0, 644.0, 576.0)
+
+[node name="Walk17" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(852.0, 382.0, 928.0, 382.0, 928.0, 576.0, 852.0, 576.0)
+
+[node name="Walk18" type="Polygon2D" parent="Placeholder/Ground" groups=["walkable"]]
+color = Color(0.13, 0.26, 0.28, 1.0)
+polygon = PackedVector2Array(694.0, 382.0, 928.0, 382.0, 928.0, 458.0, 694.0, 458.0)
+
+[node name="Patch0" type="Polygon2D" parent="Placeholder/Ground"]
+color = Color(0.16, 0.31, 0.32, 1.0)
+polygon = PackedVector2Array(732.9, 330.0, 726.0, 358.1, 703.0, 381.3, 676.1, 400.1, 648.8, 418.2, 615.0, 431.9, 576.0, 433.6, 539.7, 424.9, 506.7, 414.0, 473.2, 402.0, 444.9, 383.0, 432.4, 356.9, 432.9, 330.0, 436.2, 303.8, 443.2, 276.3, 464.0, 251.6, 498.8, 236.3, 537.4, 229.1, 576.0, 223.6, 617.3, 222.0, 656.7, 232.1, 685.3, 253.5, 704.8, 278.0, 722.1, 302.6)
+
+[node name="Walls" type="Node2D" parent="Placeholder"]
+
+[node name="Navigation" type="NavigationRegion2D" parent="."]
+
+[node name="Art" type="Sprite2D" parent="."]
+visible = false
+centered = false
+
+[node name="Agents" type="Node2D" parent="."]
+
+[node name="Player" parent="Agents" instance=ExtResource("2_player")]
+position = Vector2(576, 330)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_spawner")]
+scale = Vector2(1, 1)
+
+[node name="Marker2D" parent="EnemySpawner"]
+position = Vector2(14, 262)
+
+[node name="Marker2D2" parent="EnemySpawner"]
+position = Vector2(470, 78)
+
+[node name="Marker2D3" parent="EnemySpawner"]
+position = Vector2(1138, 398)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemySpawner"]
+position = Vector2(682, 582)
+
+[node name="Music" type="Node" parent="."]
+script = ExtResource("4_music")
+track = "battle"
+
+[node name="GameHUD" parent="." instance=ExtResource("5_hud")]

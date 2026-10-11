@@ -1,0 +1,49 @@
+[gd_scene format=3]
+
+
+
+[node name="CrystalCluster" type="Node2D"]
+
+[node name="Footprint" type="Polygon2D" parent="." groups=["obstacle"]]
+color = Color(0.16, 0.11, 0.27, 1.0)
+polygon = PackedVector2Array(46.6, 6.0, 42.5, 19.9, 33.0, 34.1, 10.9, 38.5, -11.6, 40.5, -34.5, 35.5, -45.1, 20.8, -53.4, 6.0, -47.6, -9.6, -29.3, -19.0, -11.3, -27.8, 10.7, -25.8, 27.8, -17.7, 45.0, -8.7)
+
+[node name="Shard0" type="Polygon2D" parent="."]
+color = Color(0.55, 0.38, 0.86, 1.0)
+polygon = PackedVector2Array(-37.0, 22.0, -34.8, -7.9, -36.0, -24.0, -17.2, -7.9, -15.0, 22.0)
+
+[node name="Shine0" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0.22)
+polygon = PackedVector2Array(-31.5, 20.0, -30.9, -5.6, -36.0, -24.0, -26.6, -5.6, -26.0, 20.0)
+
+[node name="Shard1" type="Polygon2D" parent="."]
+color = Color(0.55, 0.38, 0.86, 1.0)
+polygon = PackedVector2Array(14.0, 24.0, 16.0, -2.0, 36.0, -16.0, 32.0, -2.0, 34.0, 24.0)
+
+[node name="Shine1" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0.22)
+polygon = PackedVector2Array(19.0, 22.0, 19.5, 0.0, 36.0, -16.0, 23.5, 0.0, 24.0, 22.0)
+
+[node name="Shard2" type="Polygon2D" parent="."]
+color = Color(0.33, 0.83, 0.86, 1.0)
+polygon = PackedVector2Array(-15.0, 26.0, -12.0, -19.5, 2.0, -44.0, 12.0, -19.5, 15.0, 26.0)
+
+[node name="Shine2" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0.22)
+polygon = PackedVector2Array(-7.5, 24.0, -6.8, -16.0, 2.0, -44.0, -0.8, -16.0, 0.0, 24.0)
+
+[node name="Shard3" type="Polygon2D" parent="."]
+color = Color(0.43, 0.9, 0.9, 1.0)
+polygon = PackedVector2Array(-18.0, 30.0, -16.4, 7.9, -26.0, -4.0, -3.6, 7.9, -2.0, 30.0)
+
+[node name="Shine3" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0.22)
+polygon = PackedVector2Array(-14.0, 28.0, -13.6, 9.6, -26.0, -4.0, -10.4, 9.6, -10.0, 28.0)
+
+[node name="Shard4" type="Polygon2D" parent="."]
+color = Color(0.68, 0.5, 0.95, 1.0)
+polygon = PackedVector2Array(7.0, 30.0, 8.4, 10.5, 32.0, 0.0, 19.6, 10.5, 21.0, 30.0)
+
+[node name="Shine4" type="Polygon2D" parent="."]
+color = Color(1, 1, 1, 0.22)
+polygon = PackedVector2Array(10.5, 28.0, 10.8, 12.0, 32.0, 0.0, 13.7, 12.0, 14.0, 28.0)
