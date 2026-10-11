@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Audio="*res://audio/audio.gd"
 GameSettings="*res://settings/game_settings.gd"
 Scenes="*res://scenes/scene_manager.gd"
+Leaderboard="*res://leaderboard/leaderboard_api.gd"
 
 [display]
 

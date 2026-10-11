@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cdgeoqp3i7i2a" path="res://Main Menu/ButtonTemplate.png" id="2_b61v4"]
 [ext_resource type="Shader" uid="uid://bc52xtj4ppt2d" path="res://Main Menu/example.gdshader" id="3_87fhq"]
 [ext_resource type="Script" uid="uid://de1ej5v6jfiv7" path="res://Main Menu/play.gd" id="3_b61v4"]
+[ext_resource type="Texture2D" uid="uid://16igj1bhawbx" path="res://leaderboard/trophy.svg" id="7_trophy"]
 [ext_resource type="FontFile" uid="uid://dsaajhs1x4pyh" path="res://Main Menu/CinzelDecorative-Bold.ttf" id="4_xq18m"]
 [ext_resource type="Texture2D" uid="uid://y2la11617vgc" path="res://Main Menu/Title3.png" id="5_ye3th"]
 [ext_resource type="Script" uid="uid://dgkqf421blvc2" path="res://Main Menu/main_menu.gd" id="6_menu"]
@@ -260,6 +261,24 @@ label_settings = SubResource("LabelSettings_87fhq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+
+[node name="Leaderboard" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -108.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 108.0
+grow_horizontal = 0
+tooltip_text = "Leaderboard"
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("7_trophy")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_b61v4")
+go_to_scene = "leaderboard"
 
 [node name="Title" type="TextureRect" parent="." unique_id=216359459]
 layout_mode = 1
