@@ -1,6 +1,6 @@
 extends CanvasLayer
 ## Pause menu for levels. Esc pauses the game and shows Resume, Settings and
-## Main menu (which asks for confirmation first). Each Esc backs out one step:
+## Main menu (which asks "Are you sure?" first). Each Esc backs out one step:
 ## closes Settings, cancels the confirmation, then resumes.
 
 const SETTINGS_SCENE := preload("res://Main Menu/Settings/Settings.tscn")
