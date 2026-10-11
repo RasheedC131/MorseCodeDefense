@@ -35,8 +35,8 @@ const CAMERA_TIMEOUT := 20.0 # seconds to wait for the camera before starting an
 const CAMERA_ERRORS := ["CNF", "COC", "MLC", "IE"]
 
 @onready var parser: MorseParser = $MorseParser
-@onready var sequence_label: Label = $TopBar/Margin/Row/Sequence
-@onready var letter_label: Label = $TopBar/Margin/Row/Letter
+@onready var sequence_label: Label = $Morse/Sequence
+@onready var letter_label: Label = $Morse/Letter
 @onready var alphabet: HBoxContainer = $BottomBar/Margin/Alphabet
 @onready var eye_detection: EyeDetection = $EyeDetection
 @onready var eyes_preview: CameraPreview = $EyesPreview
