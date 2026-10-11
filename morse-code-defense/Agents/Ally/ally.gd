@@ -26,6 +26,7 @@ func _ready() -> void:
 	curr_health = max_health
 	sprite_2d.sprite_frames = sprites[randi() % sprites.size()]
 	sprite_2d.play("default")
+	LetterBadge.show_ally(letter_label, self, sprite_2d)
 	
 	find_target()
 	

@@ -91,6 +91,16 @@ fill_to = Vector2(0.5, 0)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_add"]
 blend_mode = 1
 
+[sub_resource type="LabelSettings" id="LabelSettings_howto"]
+font = ExtResource("4_xq18m")
+font_size = 25
+font_color = Color(0.9490196, 0.7607843, 0.3529412, 1)
+outline_size = 8
+outline_color = Color(0.078431375, 0.15686275, 0.3529412, 1)
+shadow_size = 10
+shadow_color = Color(0.078431375, 0.15686275, 0.3529412, 0.5)
+shadow_offset = Vector2(0, 3)
+
 [node name="Control" type="Control" unique_id=1155235894]
 layout_mode = 3
 anchors_preset = 15
@@ -335,6 +345,36 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("3_b61v4")
 go_to_scene = "leaderboard"
+
+[node name="HowToPlay" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -98.0
+offset_right = 200.0
+offset_bottom = -18.0
+grow_vertical = 0
+tooltip_text = "How to Play"
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("9_616t6")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("3_b61v4")
+go_to_scene = "instructions"
+
+[node name="Label" type="Label" parent="HowToPlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "How to Play"
+label_settings = SubResource("LabelSettings_howto")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Title" type="TextureRect" parent="." unique_id=216359459]
 layout_mode = 1

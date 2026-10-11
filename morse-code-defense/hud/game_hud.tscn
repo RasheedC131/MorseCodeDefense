@@ -89,8 +89,10 @@ layout_mode = 2
 theme_override_constants/separation = 4
 
 [node name="Banner" type="TextureRect" parent="." unique_id=609711036]
+z_index = -1
 offset_right = 1153.0
 offset_bottom = 647.0
+mouse_filter = 2
 texture = ExtResource("4_2s5eb")
 expand_mode = 1
 
