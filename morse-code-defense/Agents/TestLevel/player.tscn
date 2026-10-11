@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bde0cuq6c2jse" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://tv25s6ng0l5c" path="res://Agents/TestLevel/player.gd" id="1_benua"]
+[ext_resource type="Script" path="res://Agents/health.gd" id="2_health"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uvkxl"]
 size = Vector2(128, 129)
@@ -21,3 +22,6 @@ shape = SubResource("RectangleShape2D_uvkxl")
 
 [node name="Ally Spawner" type="Marker2D" parent="." unique_id=2050086545]
 position = Vector2(0, 163.33331)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_health")
