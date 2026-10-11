@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cdgeoqp3i7i2a" path="res://Main Menu/ButtonTemplate.png" id="2_b61v4"]
 [ext_resource type="Shader" uid="uid://bc52xtj4ppt2d" path="res://Main Menu/example.gdshader" id="3_87fhq"]
 [ext_resource type="Script" uid="uid://de1ej5v6jfiv7" path="res://Main Menu/play.gd" id="3_b61v4"]
-[ext_resource type="Texture2D" uid="uid://16igj1bhawbx" path="res://leaderboard/trophy.svg" id="7_trophy"]
 [ext_resource type="FontFile" uid="uid://dsaajhs1x4pyh" path="res://Main Menu/CinzelDecorative-Bold.ttf" id="4_xq18m"]
 [ext_resource type="Texture2D" uid="uid://y2la11617vgc" path="res://Main Menu/Title3.png" id="5_ye3th"]
 [ext_resource type="Script" uid="uid://dgkqf421blvc2" path="res://Main Menu/main_menu.gd" id="6_menu"]
+[ext_resource type="Texture2D" uid="uid://16igj1bhawbx" path="res://leaderboard/trophy.svg" id="7_trophy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_grh7o"]
 shader = ExtResource("3_87fhq")
@@ -202,7 +202,8 @@ text = "SETTINGS"
 label_settings = SubResource("LabelSettings_87fhq")
 horizontal_alignment = 1
 vertical_alignment = 1
-[node name="Calibrate" type="TextureButton" parent="."]
+
+[node name="Calibrate" type="TextureButton" parent="." unique_id=1973143180]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -221,7 +222,7 @@ stretch_mode = 0
 script = ExtResource("3_b61v4")
 go_to_scene = "calibration"
 
-[node name="Label" type="Label" parent="Calibrate"]
+[node name="Label" type="Label" parent="Calibrate" unique_id=1737746452]
 z_index = 1
 material = SubResource("ShaderMaterial_grh7o")
 layout_mode = 1
@@ -242,7 +243,7 @@ label_settings = SubResource("LabelSettings_b61v4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Outline" type="Label" parent="Calibrate"]
+[node name="Outline" type="Label" parent="Calibrate" unique_id=403344780]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -261,8 +262,7 @@ label_settings = SubResource("LabelSettings_87fhq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-
-[node name="Leaderboard" type="TextureButton" parent="."]
+[node name="Leaderboard" type="TextureButton" parent="." unique_id=943101731]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

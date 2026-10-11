@@ -11,7 +11,7 @@ extends Node
 ## BASE_URL is empty (no server yet), scores are kept in a local file instead,
 ## so the screens work in the meantime. Local scores only live on this computer.
 
-const BASE_URL := "" # the server's address, e.g. "https://example.com/api"; empty = local file
+const BASE_URL := "https://uahdsjltbcatjcflmhjw.supabase.co/functions/v1/api" # the server's address, e.g. "https://example.com/api"; empty = local file
 const TIMEOUT := 10.0 # seconds before giving up on the server
 const LOCAL_FILE := "user://leaderboard.json"
 const NAME_LENGTH := 3
