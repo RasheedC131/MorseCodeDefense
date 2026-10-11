@@ -159,7 +159,6 @@ animations = [{
 [node name="Ally" type="CharacterBody2D" unique_id=994462329]
 scale = Vector2(0.3, 0.3)
 collision_layer = 2
-collision_mask = 1
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_mox0q")
@@ -169,6 +168,7 @@ sprites = Array[SpriteFrames]([SubResource("SpriteFrames_15su8"), SubResource("S
 shape = SubResource("CircleShape2D_uvkxl")
 
 [node name="PathFinder" parent="." unique_id=542989051 instance=ExtResource("3_ieubk")]
+debug_enabled = false
 
 [node name="AttackRange" type="Area2D" parent="." unique_id=1806798288]
 collision_mask = 3

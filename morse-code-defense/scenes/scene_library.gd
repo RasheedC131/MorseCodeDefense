@@ -12,7 +12,7 @@ class_name SceneLibrary
 
 const SCENES := {
 	"main_menu": "res://Main Menu/MainMenu.tscn",
-	"game": "res://levels/map_meadow.tscn", # main map (for testing), where Play leads
+	"game": "res://game.tscn", # main map (for testing), where Play leads
 	"game_original": "res://game.tscn", # Rasheed's pathfinding level
 	"map_zigzag": "res://levels/map_zigzag.tscn", # tile map: 2 long comb lanes + a quick middle lane
 	"calibration": "res://computer_vision/calibration.tscn", # blink calibration, opened from Settings
