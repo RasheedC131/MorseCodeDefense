@@ -12,18 +12,20 @@ Every character (player, ally, enemy, and any new ones) has a **Sprite** node us
 
 A character only needs the animations it uses. Missing ones are skipped (no `walk` → it just stays on `idle`). Spell the names exactly like this, lowercase.
 
-Until a character has art, it shows the Godot icon (tinted green for allies, red for enemies) so the game still works.
+## The DELETEANDREPLACEME stand-in
 
-`example/` is a finished example to copy: a sprite sheet and its Sprite Frames with all five animations.
+Until a character has its own art, it uses `DELETEANDREPLACEME/`: a grey blob with all five animations, tinted per character (player blue, allies green, enemies red) so they can be told apart. It's also a finished example to copy: a sprite sheet plus its Sprite Frames.
+
+**When every character has real art:** check each character's **Sprite** node no longer uses `DELETEANDREPLACEME_frames.tres`, then delete the `DELETEANDREPLACEME` folder. (Delete it earlier and any character still pointing at it will fail to load.)
 
 ## Adding a character's sprite
 
 ### 1. Add the art
 Make a folder for the character, e.g. `characters/enemy/`, and drop the art in:
-- **one sprite sheet** (all frames in a grid, like `example/example_sheet.png`), or
+- **one sprite sheet** (all frames in a grid, like `DELETEANDREPLACEME/DELETEANDREPLACEME_sheet.png`), or
 - **one image per frame** (`walk_1.png`, `walk_2.png`, ...).
 
-Any size works; the game scales it (see step 4).
+Any size works; the game scales it (see step 4). For the layout, look at `DELETEANDREPLACEME/DELETEANDREPLACEME_sheet.png`.
 
 ### 2. Make the Sprite Frames
 1. In the **FileSystem** panel, right-click the character's folder → **Create New → Resource...** → pick **SpriteFrames** → save it as e.g. `enemy_frames.tres`.
@@ -41,12 +43,12 @@ Any size works; the game scales it (see step 4).
    - ally: `Agents/Ally/ally.tscn`
    - enemy: `Agents/Enemy/enemy.tscn`
 2. Select the **Sprite** node.
-3. Drag your `.tres` from the FileSystem panel onto **Sprite Frames** in the Inspector.
+3. Drag your `.tres` from the FileSystem panel onto **Sprite Frames** in the Inspector, replacing `DELETEANDREPLACEME_frames.tres`.
 
-The tint goes away automatically once real art is assigned.
+The stand-in tint goes away automatically once real art is assigned.
 
 ### 4. Adjust it in the Inspector (Sprite node)
-- **Display Height**: how tall the character is drawn. Your frames are scaled to this, whatever size you drew them. 128 matches the current placeholder.
+- **Display Height**: how tall the character is drawn. Your frames are scaled to this, whatever size you drew them. 128 is the current size.
 - **Art Faces Left**: turn on if your art faces left (the default assumes right).
 - **Pixel Art**: on = crisp pixels; turn off for smooth, painted art.
 

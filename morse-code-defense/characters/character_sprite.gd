@@ -18,7 +18,9 @@ signal action_finished(animation_name: StringName)
 ## Emitted when the die animation finishes (or right away if there isn't one).
 signal death_finished
 
-const PLACEHOLDER: SpriteFrames = preload("res://characters/placeholder_frames.tres")
+## Stand-in art used until a character has its own Sprite Frames. Loaded by path
+## (not preloaded) so deleting the DELETEANDREPLACEME folder never breaks this script.
+const PLACEHOLDER_PATH := "res://characters/DELETEANDREPLACEME/DELETEANDREPLACEME_frames.tres"
 const ONE_SHOTS: Array[StringName] = [&"attack", &"hurt", &"die"]
 
 ## How tall the character appears, in the character's own units. Art of any
@@ -34,7 +36,8 @@ const ONE_SHOTS: Array[StringName] = [&"attack", &"hurt", &"die"]
 	set(value):
 		pixel_art = value
 		texture_filter = TEXTURE_FILTER_NEAREST if value else TEXTURE_FILTER_PARENT_NODE
-## Colour used only while there's no art yet, so placeholder characters can be told apart.
+## Colour used only while the character still has the DELETEANDREPLACEME stand-in art,
+## so placeholder characters can be told apart. Ignored once real art is assigned.
 @export var placeholder_tint := Color.WHITE
 ## Below this speed the character counts as standing still.
 @export var walk_threshold := 5.0
@@ -54,9 +57,11 @@ func _ready() -> void:
 		animation_changed.connect(_fit_to_height)
 		_fit_to_height()
 		return
+	if sprite_frames == null and ResourceLoader.exists(PLACEHOLDER_PATH):
+		sprite_frames = load(PLACEHOLDER_PATH)
 	if sprite_frames == null:
-		sprite_frames = PLACEHOLDER
-	modulate = placeholder_tint if sprite_frames == PLACEHOLDER else Color.WHITE
+		return # no art at all yet
+	modulate = placeholder_tint if _is_placeholder() else Color.WHITE
 	for one_shot in ONE_SHOTS:
 		if sprite_frames.has_animation(one_shot):
 			sprite_frames.set_animation_loop(one_shot, false) # one-offs always end
@@ -124,7 +129,7 @@ func _on_animation_finished() -> void:
 # (with one warning each), so characters only need the animations they use.
 func _play_if_exists(animation_name: StringName) -> bool:
 	if sprite_frames == null or not sprite_frames.has_animation(animation_name):
-		if sprite_frames != PLACEHOLDER and animation_name in [&"idle", &"walk"] and not _warned.has(animation_name):
+		if not _is_placeholder() and animation_name in [&"idle", &"walk"] and not _warned.has(animation_name):
 			_warned[animation_name] = true
 			push_warning("%s: no \"%s\" animation in %s" % [get_parent().name, animation_name, sprite_frames.resource_path if sprite_frames else "its Sprite Frames"])
 		return false
@@ -132,6 +137,10 @@ func _play_if_exists(animation_name: StringName) -> bool:
 		play(animation_name)
 		_fit_to_height()
 	return true
+
+
+func _is_placeholder() -> bool:
+	return sprite_frames != null and sprite_frames.resource_path == PLACEHOLDER_PATH
 
 
 # Scales the sprite so the current frame is display_height tall.

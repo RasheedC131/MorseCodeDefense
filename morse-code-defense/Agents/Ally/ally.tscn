@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bw28n8ygqrql7" path="res://Agents/Ally/ally.gd" id="1_mox0q"]
 [ext_resource type="Script" path="res://characters/character_sprite.gd" id="cs_sprite"]
-[ext_resource type="SpriteFrames" path="res://characters/placeholder_frames.tres" id="cs_frames"]
+[ext_resource type="SpriteFrames" path="res://characters/DELETEANDREPLACEME/DELETEANDREPLACEME_frames.tres" id="cs_frames"]
 [ext_resource type="PackedScene" uid="uid://e2danx30eh0" path="res://Agents/Path Finder/path_finder.tscn" id="3_ieubk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvkxl"]

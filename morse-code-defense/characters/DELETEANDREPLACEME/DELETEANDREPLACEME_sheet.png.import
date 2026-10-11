@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsjottin480vq"
-path="res://.godot/imported/example_sheet.png-50b257c177be968e9888861778f0f9a3.ctex"
+uid="uid://cphg128xyxed0"
+path="res://.godot/imported/DELETEANDREPLACEME_sheet.png-2d811b046a747c08fbbc668037afab3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/example/example_sheet.png"
-dest_files=["res://.godot/imported/example_sheet.png-50b257c177be968e9888861778f0f9a3.ctex"]
+source_file="res://characters/DELETEANDREPLACEME/DELETEANDREPLACEME_sheet.png"
+dest_files=["res://.godot/imported/DELETEANDREPLACEME_sheet.png-2d811b046a747c08fbbc668037afab3e.ctex"]
 
 [params]
 
