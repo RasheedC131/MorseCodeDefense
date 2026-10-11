@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://hud/pause_menu.gd" id="1_pause"]
 [ext_resource type="Theme" path="res://GameUI/Screens/sos_theme.tres" id="2_theme"]
 [ext_resource type="PackedScene" path="res://GameUI/Screens/wisteria_frame.tscn" id="3_wisteria"]
+[ext_resource type="Script" path="res://GameUI/Screens/cameo.gd" id="c_cameo"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -21,6 +22,30 @@ color = Color(0.03, 0.05, 0.14, 0.66)
 
 [node name="Wisteria" parent="Dim" instance=ExtResource("3_wisteria")]
 layout_mode = 1
+
+[node name="LeftCameo" type="Control" parent="Dim"]
+layout_mode = 1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_right = 300.0
+offset_top = -160.0
+offset_bottom = 180.0
+mouse_filter = 2
+script = ExtResource("c_cameo")
+
+[node name="RightCameo" type="Control" parent="Dim"]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+anchor_right = 1.0
+offset_left = -300.0
+offset_right = -40.0
+offset_top = -160.0
+offset_bottom = 180.0
+mouse_filter = 2
+script = ExtResource("c_cameo")
 
 [node name="Menu" type="PanelContainer" parent="Dim"]
 visible = false
