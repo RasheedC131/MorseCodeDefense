@@ -64,7 +64,7 @@ const SFX := {
 
 	# --- Menus ---
 	"ui_click": {
-		"file": "res://audio/sfx/ui/click.wav",
+		"file": "res://audio/sfx/ui/click.ogg",
 		"bus": "UI",
 	},
 }

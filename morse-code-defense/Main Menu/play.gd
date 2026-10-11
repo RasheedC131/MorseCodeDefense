@@ -11,6 +11,7 @@ var tween: Tween
 var settings_instance: Node
 
 func _ready():
+	_use_wood_as_click_area()
 	_update_pivot()
 	resized.connect(_update_pivot)
 	mouse_entered.connect(func(): _animate(hover_scale))
@@ -20,6 +21,14 @@ func _ready():
 	button_down.connect(func(): _animate(press_scale, 0.06))
 	button_up.connect(func(): _animate(hover_scale if is_hovered() else Vector2.ONE))
 	pressed.connect(_on_pressed)
+
+# Only the visible wood counts as the button, not the see-through padding around it,
+# so buttons stacked close together don't steal each other's clicks.
+func _use_wood_as_click_area():
+	if texture_normal and texture_click_mask == null:
+		var mask := BitMap.new()
+		mask.create_from_image_alpha(texture_normal.get_image())
+		texture_click_mask = mask
 
 func _update_pivot():
 	pivot_offset = size / 2.0
