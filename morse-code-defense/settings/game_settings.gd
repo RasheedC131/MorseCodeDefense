@@ -62,8 +62,11 @@ func set_music_muted(muted: bool) -> void:
 
 func set_sfx_muted(muted: bool) -> void:
 	sfx_muted = muted
-	_apply_mutes()
 	_save()
+	if muted:
+		# Let the checkbox's own click play before sound effects go quiet
+		await get_tree().create_timer(0.15).timeout
+	_apply_mutes()
 
 
 func _apply_mutes() -> void:

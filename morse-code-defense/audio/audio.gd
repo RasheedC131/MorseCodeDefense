@@ -14,6 +14,7 @@ extends Node
 const BUSES: Array[String] = ["Music", "SFX", "UI"]
 const POOL_SIZE := 16
 const MUSIC_FADE_TIME := 1.0
+const MUSIC_VOLUME := 0.5 # background music plays at half volume under the sound effects
 
 var _pool: Array[AudioStreamPlayer] = []
 var _next_in_pool := 0
@@ -28,6 +29,7 @@ var _warned := {} # names/paths already warned about, so the log isn't spammed
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS # keep playing while the game is paused
 	_ensure_buses()
+	set_volume("Music", MUSIC_VOLUME)
 	for i in POOL_SIZE:
 		var player := AudioStreamPlayer.new()
 		add_child(player)
