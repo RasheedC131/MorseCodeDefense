@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dd45cbqvuf2ml" path="res://Main Menu/Settings/texture_button.gd" id="3_3d8ab"]
 [ext_resource type="FontFile" uid="uid://c3wayko015w8k" path="res://Main Menu/MysteryQuest-Regular.ttf" id="3_urc0d"]
 [ext_resource type="Script" uid="uid://2brju4je6x1t" path="res://Main Menu/Settings/settings_menu.gd" id="4_menu"]
+[ext_resource type="Script" path="res://GameUI/Screens/cameo.gd" id="c_cameo"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2fv1l"]
 font = ExtResource("3_urc0d")
@@ -28,6 +29,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.55)
+
+[node name="LeftCameo" type="Control" parent="."]
+layout_mode = 1
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_right = 300.0
+offset_top = -160.0
+offset_bottom = 180.0
+mouse_filter = 2
+script = ExtResource("c_cameo")
+
+[node name="RightCameo" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_right = -40.0
+offset_top = -160.0
+offset_bottom = 180.0
+mouse_filter = 2
+script = ExtResource("c_cameo")
 
 [node name="SettingsMenu" type="TextureRect" parent="." unique_id=593164256]
 layout_mode = 1
