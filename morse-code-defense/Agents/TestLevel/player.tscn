@@ -93,4 +93,4 @@ position = Vector2(0, 163.33331)
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_uvkxl")
 autoplay = "default"
-frame_progress = 0.11622484
+frame_progress = 0.3162075

@@ -1,47 +1,9 @@
 [gd_resource type="Resource" script_class="AllyData" format=3 uid="uid://bt6tagcy7ln5n"]
 
 [ext_resource type="Script" uid="uid://be8p3a4c2t716" path="res://Agents/Ally/Ally Types/AllyData.gd" id="1_q01v8"]
-[ext_resource type="Texture2D" uid="uid://d3h8peeca4fur" path="res://characters/SpriteSheets/Whisperseed.png" id="2_knv05"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oinxr"]
-atlas = ExtResource("2_knv05")
-region = Rect2(0, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6vqh5"]
-atlas = ExtResource("2_knv05")
-region = Rect2(200, 0, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f4oon"]
-atlas = ExtResource("2_knv05")
-region = Rect2(0, 200, 200, 200)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mgbee"]
-atlas = ExtResource("2_knv05")
-region = Rect2(200, 200, 200, 200)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_mox0q"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oinxr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6vqh5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f4oon")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mgbee")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
 
 [resource]
 script = ExtResource("1_q01v8")
 attack_speed = 0.2
-scale = 0.15
-sprite_sheet = SubResource("SpriteFrames_mox0q")
+scale = 0.2
 metadata/_custom_type_script = "uid://be8p3a4c2t716"
