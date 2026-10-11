@@ -2,16 +2,16 @@
 
 [ext_resource type="Script" path="res://GameUI/Screens/instructions.gd" id="1_script"]
 [ext_resource type="Theme" path="res://GameUI/Screens/sos_theme.tres" id="2_theme"]
-[ext_resource type="Texture2D" uid="uid://cr6nelilg06km" path="res://Main Menu/Settings/SettingsMenu.png" id="3_stone"]
+[ext_resource type="Texture2D" path="res://GameUI/Screens/StonePanel.png" id="3_stone"]
 [ext_resource type="Texture2D" uid="uid://c7ccjdgauudfs" path="res://Main Menu/Background.png" id="4_bg"]
 [ext_resource type="PackedScene" path="res://GameUI/Screens/wisteria_frame.tscn" id="5_wisteria"]
 [ext_resource type="Script" uid="uid://d2nbxguos85jh" path="res://audio/scene_music.gd" id="6_music"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_stone"]
-content_margin_left = 84.0
-content_margin_top = 56.0
-content_margin_right = 84.0
-content_margin_bottom = 52.0
+content_margin_left = 188.0
+content_margin_top = 104.0
+content_margin_right = 152.0
+content_margin_bottom = 70.0
 texture = ExtResource("3_stone")
 
 [node name="Instructions" type="Control"]
@@ -50,16 +50,16 @@ color = Color(0.03, 0.06, 0.16, 0.45)
 layout_mode = 1
 
 [node name="Panel" type="PanelContainer" parent="."]
-custom_minimum_size = Vector2(780, 630)
+custom_minimum_size = Vector2(900, 630)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -390.0
+offset_left = -450.0
 offset_top = -315.0
-offset_right = 390.0
+offset_right = 450.0
 offset_bottom = 315.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -67,18 +67,20 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_stone")
 
 [node name="Box" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 5
 alignment = 1
 
 [node name="Title" type="Label" parent="Panel/Box"]
 layout_mode = 2
 theme_type_variation = &"TitleLabel"
+theme_override_font_sizes/font_size = 40
 text = "How to Play"
 horizontal_alignment = 1
 
 [node name="Story" type="RichTextLabel" parent="Panel/Box"]
 layout_mode = 2
 mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 17
 bbcode_enabled = true
 text = "[center][color=#f2c25a]TK[/color] is sending out an [color=#f2c25a]SOS[/color] in Morse code! Creatures are creeping through the forest toward Lenny. Answer the call and help [color=#f2c25a]Lenny survive[/color].[/center]"
 fit_content = true
@@ -87,8 +89,8 @@ scroll_active = false
 [node name="Rules" type="RichTextLabel" parent="Panel/Box"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/paragraph_separation = 4
-theme_override_font_sizes/normal_font_size = 17
+theme_override_constants/paragraph_separation = 2
+theme_override_font_sizes/normal_font_size = 16
 bbcode_enabled = true
 text = "[ol type=1] Every creature carries a [color=#f2c25a]letter[/color] and its Morse code.
  Blink to spell it: a [color=#f2c25a]short blink[/color] is a dot [font_size=14]●[/font_size], a [color=#f2c25a]long blink[/color] is a dash [font_size=22]—[/font_size]. Pause and the letter is sent.
@@ -102,6 +104,7 @@ scroll_active = false
 [node name="Tip" type="Label" parent="Panel/Box"]
 layout_mode = 2
 theme_type_variation = &"HintLabel"
+theme_override_font_sizes/font_size = 14
 text = "Calibrate first so the game learns your blinks.  No camera? Turn on Keyboard only in Settings and type . and -"
 horizontal_alignment = 1
 autowrap_mode = 3
@@ -113,13 +116,13 @@ alignment = 1
 
 [node name="Back" type="Button" parent="Panel/Box/Buttons"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 70)
+custom_minimum_size = Vector2(150, 62)
 layout_mode = 2
 text = "Back"
 
 [node name="Play" type="Button" parent="Panel/Box/Buttons"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 70)
+custom_minimum_size = Vector2(150, 62)
 layout_mode = 2
 text = "Play"
 

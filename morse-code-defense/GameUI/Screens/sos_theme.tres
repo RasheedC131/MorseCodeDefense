@@ -1,7 +1,7 @@
 [gd_resource type="Theme" format=3]
 
 [ext_resource type="FontFile" uid="uid://c3wayko015w8k" path="res://Main Menu/MysteryQuest-Regular.ttf" id="1_font"]
-[ext_resource type="Texture2D" uid="uid://cr6nelilg06km" path="res://Main Menu/Settings/SettingsMenu.png" id="2_panel"]
+[ext_resource type="Texture2D" path="res://GameUI/Screens/StonePanel.png" id="2_panel"]
 [ext_resource type="Texture2D" uid="uid://cxsfmummui1v2" path="res://Main Menu/Rock.png" id="3_rock"]
 [ext_resource type="Texture2D" path="res://GameUI/Screens/FieldPaper.png" id="4_band"]
 
