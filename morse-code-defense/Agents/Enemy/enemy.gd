@@ -26,6 +26,7 @@ var max_health : int
 var curr_health : int
 var attack_speed : float
 var points : int
+var _fighting_rival := false
 
 
 func _ready() -> void:
@@ -46,15 +47,33 @@ func _physics_process(_delta: float) -> void:
 	if is_instance_valid(nav_agent):
 		velocity = nav_agent.get_next_dir() * curr_speed
 		move_and_slide()
+	_try_fight_rival()
 		
 
-# Enemies only stop to attack Lenny. Allies kill them by meeting them on the
-# path (see ally.gd), so enemies no longer stop to fight allies through walls.
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body is Player:
 		active_target = body
 		curr_speed = 0
 		attack_cooldown.start(attack_speed)
+	elif body == rival:
+		_try_fight_rival()
+
+# Same rule as allies: only fight the rival when it's close along the path,
+# not through a wall. Checked every frame, since it may walk around first.
+func _try_fight_rival() -> void:
+	if _fighting_rival or active_target is Player or not is_instance_valid(rival):
+		return
+	if not attack_range.overlaps_body(rival):
+		return
+	var shape := attack_range.get_node("CollisionShape2D").shape as CircleShape2D
+	if Pathfinder.walk_distance(self, rival) > shape.radius * attack_range.global_scale.x * 1.25:
+		return
+	_fighting_rival = true
+	if not rival.defeated.is_connected(_on_target_defeated):
+		rival.defeated.connect(_on_target_defeated)
+	active_target = rival
+	curr_speed = 0
+	attack_cooldown.start(attack_speed)
 
 func _on_attack_cooldown_timeout() -> void:
 	deal_damage()
@@ -74,6 +93,7 @@ func take_damage(damage : int):
 		defeated.emit()
 
 func _on_target_defeated():
+	_fighting_rival = false
 	attack_cooldown.stop()
 	curr_speed = speed
 	rival = null
