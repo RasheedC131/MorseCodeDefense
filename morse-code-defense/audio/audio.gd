@@ -6,11 +6,15 @@ extends Node
 ##   Audio.play_music("battle")
 ##   Audio.set_volume("SFX", 0.5)
 ##
+## Every button in the game plays "ui_click" when pressed, automatically.
+## To silence one, add metadata "no_click_sound" (any value) to it in the Inspector.
+##
 ## Sound names come from SoundLibrary (audio/sound_library.gd).
 
 const BUSES: Array[String] = ["Music", "SFX", "UI"]
 const POOL_SIZE := 16
 const MUSIC_FADE_TIME := 1.0
+const MUSIC_VOLUME := 0.25 # background music plays at a quarter volume under the sound effects
 
 var _pool: Array[AudioStreamPlayer] = []
 var _next_in_pool := 0
@@ -25,12 +29,32 @@ var _warned := {} # names/paths already warned about, so the log isn't spammed
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS # keep playing while the game is paused
 	_ensure_buses()
+	set_volume("Music", MUSIC_VOLUME)
 	for i in POOL_SIZE:
 		var player := AudioStreamPlayer.new()
 		add_child(player)
 		_pool.append(player)
 	_music_a = _make_music_player()
 	_music_b = _make_music_player()
+	get_tree().node_added.connect(_on_node_added)
+	# The first scene can be built before this runs, so also catch buttons that already exist
+	_add_click_to_tree.call_deferred(get_tree().root)
+
+
+# Gives every button a click sound as it enters the game.
+func _on_node_added(node: Node) -> void:
+	if node is BaseButton and not node.has_meta("no_click_sound") and not node.pressed.is_connected(_click):
+		node.pressed.connect(_click)
+
+
+func _add_click_to_tree(node: Node) -> void:
+	_on_node_added(node)
+	for child in node.get_children():
+		_add_click_to_tree(child)
+
+
+func _click() -> void:
+	play("ui_click")
 
 
 ## Plays a sound effect from SoundLibrary.SFX.

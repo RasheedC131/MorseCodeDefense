@@ -4,6 +4,13 @@
 [ext_resource type="Script" path="res://computer_vision/morse_parser.gd" id="2_parser"]
 [ext_resource type="Script" path="res://addons/Eye Detection/python_results.gd" id="3_eyes"]
 [ext_resource type="Script" path="res://addons/Eye Detection/camera.gd" id="4_preview"]
+[ext_resource type="Script" path="res://GameUI/Health Bar/health_bar.gd" id="5_hearts"]
+[ext_resource type="Texture2D" uid="uid://c2lg2dlfyvlyi" path="res://GameUI/Health Bar/HealthBarFull.png" id="6_full"]
+[ext_resource type="Texture2D" uid="uid://wj1s1wah0m2u" path="res://GameUI/Health Bar/HealthBarEmpty.png" id="7_empty"]
+[ext_resource type="Texture2D" uid="uid://bd7m6gy64nw8a" path="res://GameUI/Health Bar/HealthBar2Thirds.png" id="8_one"]
+[ext_resource type="Texture2D" uid="uid://brkimq868qtgr" path="res://GameUI/Health Bar/HealthBar1Third.png" id="9_two"]
+[ext_resource type="PackedScene" path="res://hud/pause_menu.tscn" id="10_pause"]
+[ext_resource type="PackedScene" path="res://leaderboard/game_over.tscn" id="11_gameover"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar"]
 bg_color = Color(0.07, 0.07, 0.09, 0.9)
@@ -44,13 +51,6 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Mode" type="Label" parent="TopBar/Margin/Row"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 14
-text = "Blink"
-vertical_alignment = 1
-
 [node name="Sequence" type="Label" parent="TopBar/Margin/Row"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -85,6 +85,18 @@ theme_override_constants/margin_bottom = 4
 [node name="Alphabet" type="HBoxContainer" parent="BottomBar/Margin"]
 layout_mode = 2
 theme_override_constants/separation = 4
+
+[node name="Hearts" type="TextureRect" parent="."]
+offset_left = 12.0
+offset_top = 4.0
+offset_right = 216.0
+offset_bottom = 60.0
+mouse_filter = 2
+texture = ExtResource("6_full")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("5_hearts")
+heart_textures = Array[Texture2D]([ExtResource("7_empty"), ExtResource("8_one"), ExtResource("9_two"), ExtResource("6_full")])
 
 [node name="EyesPreview" type="TextureRect" parent="." node_paths=PackedStringArray("eye_sensor")]
 anchors_preset = 5
@@ -138,5 +150,9 @@ theme_override_font_sizes/font_size = 16
 text = "Look at the screen so the camera can find your eyes."
 horizontal_alignment = 1
 autowrap_mode = 3
+
+[node name="PauseMenu" parent="." instance=ExtResource("10_pause")]
+
+[node name="GameOver" parent="." instance=ExtResource("11_gameover")]
 
 [connection signal="telemetry_received" from="EyeDetection" to="MorseParser" method="_on_eye_detection_telemetry_received"]

@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://caw68m16svq5"]
+
+[ext_resource type="Texture2D" uid="uid://27jqboukc8js" path="res://characters/SpriteSheets/Petalborn.png" id="1_5wdn6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8y6r"]
+atlas = ExtResource("1_5wdn6")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xy1nr"]
+atlas = ExtResource("1_5wdn6")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1hd0"]
+atlas = ExtResource("1_5wdn6")
+region = Rect2(0, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kit6"]
+atlas = ExtResource("1_5wdn6")
+region = Rect2(200, 200, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bpx0d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8y6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xy1nr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b1hd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kit6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_grh7o"]
+radius = 23.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1397374866]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1227977753]
+position = Vector2(94.999985, 68.999954)
+scale = Vector2(0.33000013, 0.33000013)
+sprite_frames = SubResource("SpriteFrames_bpx0d")
+frame_progress = 0.5494217
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=770959151]
+position = Vector2(96, 70)
+shape = SubResource("CircleShape2D_grh7o")

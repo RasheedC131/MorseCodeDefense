@@ -13,6 +13,8 @@ class_name SceneLibrary
 const SCENES := {
 	"main_menu": "res://Main Menu/MainMenu.tscn",
 	"game": "res://game.tscn", # Rasheed's pathfinding level, where Play leads
+	"calibration": "res://computer_vision/calibration.tscn", # blink calibration, opened from Settings
 	"eye_detection_test": "res://addons/Eye Detection/Example Scene/example.tscn",
+	"leaderboard": "res://leaderboard/leaderboard.tscn", # shown after Game over
 	"sound_test": "res://audio/sound_test.tscn",
 }

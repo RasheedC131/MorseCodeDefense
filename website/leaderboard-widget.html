@@ -1,0 +1,204 @@
+<!--
+  Morse Code Tower Defense: leaderboard widget for the website.
+
+  How to use it on GoDaddy (Website Builder):
+    1. Edit your site, add a section, choose "HTML" (it may be called "Embed code" or "Custom code").
+    2. Paste in EVERYTHING in this file, from the first line to the last.
+    3. Set API_BASE below to the leaderboard server's address (the same as BASE_URL in the game).
+       While it's empty, the widget shows sample scores so you can see how it looks.
+
+  It reads GET {API_BASE}/scores?limit=10 (see morse-code-defense/leaderboard/API.md)
+  and refreshes every 30 seconds. The server must allow this site to read it (CORS) and use https.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+<div id="mcd-leaderboard" aria-live="polite">
+  <div class="mcd-head">
+    <svg class="mcd-trophy" viewBox="0 0 128 128" aria-hidden="true">
+      <defs>
+        <linearGradient id="mcd-gold" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffe08a"/>
+          <stop offset="1" stop-color="#c9902e"/>
+        </linearGradient>
+      </defs>
+      <circle cx="64" cy="64" r="59" fill="#121216" stroke="#d9a640" stroke-width="5"/>
+      <path d="M40 40 H31 C19 40 19 63 42 65" fill="none" stroke="url(#mcd-gold)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M88 40 H97 C109 40 109 63 86 65" fill="none" stroke="url(#mcd-gold)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M38 32 H90 V46 C90 66 78 77 64 77 C50 77 38 66 38 46 Z" fill="url(#mcd-gold)"/>
+      <path d="M58 77 H70 L72 90 H56 Z" fill="url(#mcd-gold)"/>
+      <rect x="45" y="90" width="38" height="8" rx="2" fill="url(#mcd-gold)"/>
+      <rect x="40" y="98" width="48" height="9" rx="2" fill="#b07a22"/>
+      <path d="M64 42 L67 50 L75 50 L69 55 L71 63 L64 58 L57 63 L59 55 L53 50 L61 50 Z" fill="#fff3c4" fill-opacity="0.9"/>
+    </svg>
+    <div>
+      <h2 class="mcd-title">Leaderboard</h2>
+      <p class="mcd-subtitle">Morse Code Tower Defense</p>
+    </div>
+  </div>
+
+  <p class="mcd-note" hidden></p>
+
+  <table class="mcd-table" hidden>
+    <thead>
+      <tr><th class="mcd-rank">Rank</th><th class="mcd-name">Name</th><th class="mcd-score">Score</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <p class="mcd-status">Loading...</p>
+  <p class="mcd-updated"></p>
+</div>
+
+<style>
+  #mcd-leaderboard {
+    --mcd-bg: #121216;
+    --mcd-gold: #d9a640;
+    --mcd-gold-light: #ffd66b;
+    --mcd-text: #ebe6dc;
+    --mcd-muted: #9a958a;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: 24px 28px 18px;
+    background: var(--mcd-bg);
+    border: 2px solid var(--mcd-gold);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    color: var(--mcd-text);
+    font-family: "Open Sans", system-ui, sans-serif;
+    line-height: 1.4;
+  }
+  #mcd-leaderboard * { box-sizing: border-box; }
+  #mcd-leaderboard [hidden] { display: none !important; }
+  #mcd-leaderboard .mcd-head { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 14px; }
+  #mcd-leaderboard .mcd-trophy { width: 56px; height: 56px; flex: none; }
+  #mcd-leaderboard .mcd-title {
+    margin: 0;
+    font-family: "Cinzel Decorative", Georgia, serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--mcd-gold);
+    letter-spacing: 0.5px;
+  }
+  #mcd-leaderboard .mcd-subtitle { margin: 0; font-size: 13px; color: var(--mcd-muted); }
+  #mcd-leaderboard .mcd-note {
+    margin: 0 0 12px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    background: rgba(217, 166, 64, 0.12);
+    color: var(--mcd-gold-light);
+    font-size: 13px;
+    text-align: center;
+  }
+  #mcd-leaderboard .mcd-table { width: 100%; border-collapse: collapse; font-size: 18px; }
+  #mcd-leaderboard th {
+    padding: 6px 4px;
+    border-bottom: 1px solid rgba(217, 166, 64, 0.35);
+    color: var(--mcd-gold);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  #mcd-leaderboard td { padding: 7px 4px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+  #mcd-leaderboard tbody tr:last-child td { border-bottom: none; }
+  #mcd-leaderboard .mcd-rank { width: 22%; text-align: left; }
+  #mcd-leaderboard .mcd-name { text-align: center; font-family: ui-monospace, Menlo, Consolas, monospace; letter-spacing: 1px; }
+  #mcd-leaderboard .mcd-score { width: 30%; text-align: right; font-variant-numeric: tabular-nums; }
+  #mcd-leaderboard tr.mcd-place-1 td { color: var(--mcd-gold-light); font-weight: 600; }
+  #mcd-leaderboard tr.mcd-place-2 td { color: #d9dde3; }
+  #mcd-leaderboard tr.mcd-place-3 td { color: #d7925a; }
+  #mcd-leaderboard .mcd-status { margin: 14px 0 0; text-align: center; color: var(--mcd-muted); }
+  #mcd-leaderboard .mcd-status.mcd-error { color: #ff8a80; }
+  #mcd-leaderboard .mcd-updated { margin: 10px 0 0; text-align: center; font-size: 12px; color: var(--mcd-muted); }
+  @media (max-width: 380px) {
+    #mcd-leaderboard { padding: 18px 16px 14px; }
+    #mcd-leaderboard .mcd-title { font-size: 24px; }
+    #mcd-leaderboard .mcd-table { font-size: 16px; }
+  }
+</style>
+
+<script>
+(function () {
+  // ===== Settings =====
+  // The leaderboard server, same as BASE_URL in the game, e.g. "https://example.com/api" (no trailing slash).
+  // Leave empty to show sample scores. You can also test a server with ?api=... at the end of the page address.
+  var API_BASE = "";
+  var SHOWN = 10;            // how many scores to list
+  var REFRESH_SECONDS = 30;  // how often to check for new scores
+  // =====================
+
+  var SAMPLE = [
+    { name: "ACE", score: 1820 }, { name: "x_7", score: 1460 }, { name: "M0R", score: 1210 },
+    { name: "SOS", score: 980 }, { name: "<3!", score: 760 }, { name: "dot", score: 540 }
+  ];
+
+  var root = document.getElementById("mcd-leaderboard");
+  var body = root.querySelector("tbody");
+  var table = root.querySelector(".mcd-table");
+  var status = root.querySelector(".mcd-status");
+  var note = root.querySelector(".mcd-note");
+  var updated = root.querySelector(".mcd-updated");
+  var api = (new URLSearchParams(window.location.search).get("api") || API_BASE).replace(/\/+$/, "");
+  var hasRows = false;
+
+  function cell(text, className) {
+    var td = document.createElement("td");
+    td.className = className;
+    td.textContent = text; // names can contain symbols like < or &, so never insert them as HTML
+    return td;
+  }
+
+  function render(scores) {
+    body.textContent = "";
+    scores.slice(0, SHOWN).forEach(function (entry, i) {
+      var tr = document.createElement("tr");
+      if (i < 3) tr.className = "mcd-place-" + (i + 1);
+      tr.appendChild(cell("#" + (i + 1), "mcd-rank"));
+      tr.appendChild(cell(String(entry.name), "mcd-name"));
+      tr.appendChild(cell((Math.floor(Number(entry.score)) || 0).toLocaleString(), "mcd-score"));
+      body.appendChild(tr);
+    });
+    hasRows = scores.length > 0;
+    table.hidden = !hasRows;
+    status.className = "mcd-status";
+    status.textContent = "No scores yet. Be the first!";
+    status.hidden = hasRows;
+    updated.textContent = "Updated " + new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+  }
+
+  function showError(message) {
+    status.className = "mcd-status mcd-error";
+    status.textContent = hasRows ? message + " Showing the last scores." : message;
+    status.hidden = false;
+  }
+
+  function load() {
+    if (!api) {
+      note.textContent = "Preview: sample scores. Set API_BASE to show the real leaderboard.";
+      note.hidden = false;
+      render(SAMPLE);
+      return;
+    }
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, 10000);
+    fetch(api + "/scores?limit=" + SHOWN, { headers: { Accept: "application/json" }, cache: "no-store", signal: controller.signal })
+      .then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          if (!res.ok) throw new Error(data.error || "The leaderboard server returned an error (" + res.status + ").");
+          if (!Array.isArray(data.scores)) throw new Error("The leaderboard server sent an unexpected reply.");
+          render(data.scores);
+        });
+      })
+      .catch(function (err) {
+        // fetch reports network problems (server down, blocked by CORS) as a TypeError
+        showError(err.name === "AbortError" || err.name === "TypeError" ? "Couldn't reach the leaderboard." : err.message);
+      })
+      .finally(function () { clearTimeout(timer); });
+  }
+
+  load();
+  if (api) setInterval(load, REFRESH_SECONDS * 1000);
+})();
+</script>

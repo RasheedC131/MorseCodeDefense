@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cg7nr3xy2ppyl"]
+
+[ext_resource type="Texture2D" uid="uid://b8v8ls2dlqoy6" path="res://characters/SpriteSheets/Chomper.png" id="1_jtn5q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5h5c"]
+atlas = ExtResource("1_jtn5q")
+region = Rect2(0, 0, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07ejs"]
+atlas = ExtResource("1_jtn5q")
+region = Rect2(200, 0, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c605f"]
+atlas = ExtResource("1_jtn5q")
+region = Rect2(0, 250, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84xdu"]
+atlas = ExtResource("1_jtn5q")
+region = Rect2(200, 250, 200, 250)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grh7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5h5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07ejs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c605f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84xdu")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqc6p"]
+radius = 20.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=524637201]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1911426724]
+position = Vector2(187, 135)
+scale = Vector2(0.33, 0.33)
+sprite_frames = SubResource("SpriteFrames_grh7o")
+frame = 3
+frame_progress = 0.6862508
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1795459850]
+position = Vector2(184, 139)
+shape = SubResource("CircleShape2D_oqc6p")

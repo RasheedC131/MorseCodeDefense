@@ -21,10 +21,13 @@ const SFX := {
 	"player_damaged": {
 		"file": "res://audio/sfx/player/damaged.wav",
 	},
+	"player_died": {
+		"file": "res://audio/sfx/player/died.ogg",
+	},
 
 	# --- Enemies ---
 	"enemy_died": {
-		"file": "res://audio/sfx/enemy/died.wav",
+		"file": "res://audio/sfx/enemy/died.ogg",
 		"pitch_range": 0.1,
 	},
 
@@ -32,8 +35,24 @@ const SFX := {
 	"ally_sent": {
 		"file": "res://audio/sfx/ally/sent.wav",
 	},
+	"ally_died": {
+		"file": [ # one picked at random each time
+			"res://audio/sfx/ally/died.ogg",
+			"res://audio/sfx/ally/Death2.ogg",
+		],
+		"pitch_range": 0.1,
+	},
 
 	# --- Morse input ---
+	# 700 Hz tones, dash 3x as long as dot like real Morse
+	"morse_dot": {
+		"file": "res://audio/sfx/morse/dot.wav",
+		"bus": "UI",
+	},
+	"morse_dash": {
+		"file": "res://audio/sfx/morse/dash.wav",
+		"bus": "UI",
+	},
 	"morse_letter_accepted": {
 		"file": "res://audio/sfx/ui/letter_accepted.wav",
 		"bus": "UI",
@@ -45,7 +64,7 @@ const SFX := {
 
 	# --- Menus ---
 	"ui_click": {
-		"file": "res://audio/sfx/ui/click.wav",
+		"file": "res://audio/sfx/ui/click.ogg",
 		"bus": "UI",
 	},
 }

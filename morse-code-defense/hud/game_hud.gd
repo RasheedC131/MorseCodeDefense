@@ -1,8 +1,8 @@
 extends CanvasLayer
 class_name GameHUD
 ## In-game overlay for a level. Runs the eye tracker and Morse parser alongside
-## the game, shows the eyes and the Morse being typed at the top, and the
-## alphabet with each letter's Morse code at the bottom.
+## the game, shows the player's hearts, the eyes and the Morse being typed at
+## the top, and the alphabet with each letter's Morse code at the bottom.
 ##
 ## Gameplay hookup: connect to letter_decoded, either in the editor (select
 ## GameHUD > Node tab > Signals) or in code:
@@ -10,6 +10,10 @@ class_name GameHUD
 
 ## A finished letter from blinks or the keyboard, e.g. "A".
 signal letter_decoded(letter: String)
+
+## The run's score. Gameplay adds to it with add_score(); when the player runs
+## out of hearts it's what goes on the leaderboard.
+var score := 0
 
 const DIM := 0.25 # opacity of alphabet letters that no longer match
 const MATCH_COLOR := Color(1.0, 0.85, 0.3)
@@ -19,7 +23,6 @@ const CAMERA_TIMEOUT := 20.0 # seconds to wait for the camera before starting an
 const CAMERA_ERRORS := ["CNF", "COC", "MLC", "IE"]
 
 @onready var parser: MorseParser = $MorseParser
-@onready var mode_label: Label = $TopBar/Margin/Row/Mode
 @onready var sequence_label: Label = $TopBar/Margin/Row/Sequence
 @onready var letter_label: Label = $TopBar/Margin/Row/Letter
 @onready var alphabet: HBoxContainer = $BottomBar/Margin/Alphabet
@@ -28,10 +31,14 @@ const CAMERA_ERRORS := ["CNF", "COC", "MLC", "IE"]
 @onready var loading: Control = $Loading
 @onready var loading_title: Label = $Loading/Box/Title
 @onready var loading_message: Label = $Loading/Box/Message
+@onready var hearts: HealthBar = $Hearts
+@onready var pause_menu: CanvasLayer = $PauseMenu
+@onready var game_over = $GameOver
 
 var _cells := {} # morse code -> alphabet cell
 var _letter_tween: Tween
 var _waiting_for_camera := false
+var _run_over := false
 
 
 func _ready() -> void:
@@ -39,8 +46,7 @@ func _ready() -> void:
 	parser.letter_decoded.connect(_on_letter_decoded)
 	parser.invalid_sequence.connect(_on_invalid_sequence)
 	parser.sequence_changed.connect(_on_sequence_changed)
-	GameSettings.keyboard_mode_changed.connect(_update_mode)
-	_update_mode(GameSettings.keyboard_mode)
+	_show_player_health()
 	_on_sequence_changed("")
 	letter_label.text = ""
 	_wait_for_camera()
@@ -122,7 +128,8 @@ func _on_sequence_changed(sequence: String) -> void:
 
 func _on_letter_decoded(letter: String) -> void:
 	_show_letter(letter, Color.WHITE)
-	letter_decoded.emit(letter)
+	if not _run_over: # after death, letters spell the leaderboard name instead
+		letter_decoded.emit(letter)
 
 
 func _on_invalid_sequence(_sequence: String) -> void:
@@ -140,8 +147,30 @@ func _show_letter(text: String, color: Color) -> void:
 	_letter_tween.tween_property(letter_label, "modulate:a", 0.0, 0.4)
 
 
-func _update_mode(keyboard: bool) -> void:
-	mode_label.text = "Keyboard  ( . / - )" if keyboard else "Blink"
+# Hooks the hearts up to the player's Health node, if the level has one.
+func _show_player_health() -> void:
+	var player := get_tree().get_first_node_in_group("player")
+	var health: Health = player.get_node_or_null("Health") if player else null
+	if health == null:
+		hearts.hide()
+		return
+	hearts.max_hearts = health.max_hearts
+	hearts.set_health(health.hearts)
+	health.health_changed.connect(hearts.set_health)
+	health.died.connect(_on_player_died)
+
+
+func add_score(points: int) -> void:
+	score += points
+
+
+# Freezes the level, lets the death sound play, then asks for a leaderboard name.
+func _on_player_died() -> void:
+	_run_over = true
+	pause_menu.set_process_unhandled_input(false)
+	get_tree().paused = true
+	await get_tree().create_timer(1.5).timeout
+	game_over.open(score, parser)
 
 
 # ".-" -> "• —" (spaced, top bar) or "•–" (compact, alphabet), easier to read at a glance

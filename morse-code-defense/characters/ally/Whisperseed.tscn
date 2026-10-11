@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cxol6540tqnmp"]
+
+[ext_resource type="Texture2D" uid="uid://d3h8peeca4fur" path="res://characters/SpriteSheets/Whisperseed.png" id="1_ihu51"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us8xy"]
+atlas = ExtResource("1_ihu51")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqou0"]
+atlas = ExtResource("1_ihu51")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01hb2"]
+atlas = ExtResource("1_ihu51")
+region = Rect2(0, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2e7pl"]
+atlas = ExtResource("1_ihu51")
+region = Rect2(200, 200, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oqc6p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_us8xy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqou0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01hb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2e7pl")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_grh7o"]
+radius = 17.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=737453979]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1178541024]
+position = Vector2(80.00001, 67.00001)
+scale = Vector2(0.33, 0.33)
+sprite_frames = SubResource("SpriteFrames_oqc6p")
+frame_progress = 0.5756749
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1108120895]
+position = Vector2(85, 67)
+shape = SubResource("CircleShape2D_grh7o")
