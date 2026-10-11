@@ -8,7 +8,7 @@ const MORSE_DICT = {
 	"-.--": "Y", "--..": "Z"
 }
 
-
+@export var enemy_tier_data: Array[EnemyData] = []
 @onready var current_scene = get_tree().current_scene
 var enemy_scene = preload("res://Agents/Enemy/enemy.tscn")
 var spawnpoints := []
@@ -29,4 +29,12 @@ func _on_timer_timeout() -> void:
 	enemy.morse = random_morse_key
 	enemy.letter = MORSE_DICT[random_morse_key]
 	
+	var morse_len : int = random_morse_key.length()
+	var stats := enemy_tier_data[morse_len-1]
+	
+	enemy.speed = stats["speed"]
+	enemy.max_health = stats["max_health"]
+	enemy.attack_speed = stats["attack_speed"]
+	enemy.scale = Vector2(stats["scale"], stats["scale"])
+	enemy.points = stats["points"]
 	current_scene.add_child(enemy)

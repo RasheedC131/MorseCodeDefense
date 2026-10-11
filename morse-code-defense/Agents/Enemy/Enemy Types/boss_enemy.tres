@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://jok4jxdgebq7"]
+
+[ext_resource type="Script" uid="uid://c5luo1s7qwbdw" path="res://Agents/Enemy/Enemy Types/EnemyData.gd" id="1_snvxj"]
+
+[resource]
+script = ExtResource("1_snvxj")
+speed = 15.0
+max_health = 5
+attack_speed = 1.0
+points = 5000
+metadata/_custom_type_script = "uid://c5luo1s7qwbdw"

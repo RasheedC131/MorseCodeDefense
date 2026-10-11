@@ -1,10 +1,16 @@
 [gd_scene format=3 uid="uid://c1362cix2eytc"]
 
 [ext_resource type="Script" uid="uid://byueasd27k35" path="res://Agents/Enemy/Spawner/enemy_spawner.gd" id="1_l4lne"]
+[ext_resource type="Script" uid="uid://c5luo1s7qwbdw" path="res://Agents/Enemy/Enemy Types/EnemyData.gd" id="2_i2jly"]
+[ext_resource type="Resource" uid="uid://w5ff1eukjerb" path="res://Agents/Enemy/Enemy Types/weak_enemy.tres" id="3_462yj"]
+[ext_resource type="Resource" uid="uid://cmuh34hh7l0uf" path="res://Agents/Enemy/Enemy Types/basic_enemy.tres" id="4_q6r0c"]
+[ext_resource type="Resource" uid="uid://d1rcvp8y2dhgr" path="res://Agents/Enemy/Enemy Types/tough_enemy.tres" id="5_200i5"]
+[ext_resource type="Resource" uid="uid://jok4jxdgebq7" path="res://Agents/Enemy/Enemy Types/boss_enemy.tres" id="6_3jbxs"]
 
 [node name="EnemySpawner" type="Node2D" unique_id=1300413815]
 scale = Vector2(0.3, 0.3)
 script = ExtResource("1_l4lne")
+enemy_tier_data = Array[ExtResource("2_i2jly")]([ExtResource("3_462yj"), ExtResource("4_q6r0c"), ExtResource("5_200i5"), ExtResource("6_3jbxs")])
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1288153419]
 position = Vector2(0, -1106.667)
@@ -16,7 +22,7 @@ position = Vector2(-1073.333, 0)
 position = Vector2(1026.667, 0)
 
 [node name="Timer" type="Timer" parent="." unique_id=2076311613]
-wait_time = 5.0
+wait_time = 10.0
 autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
