@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://rx15k4wshqcn"]
 
 [ext_resource type="Texture2D" uid="uid://cr6nelilg06km" path="res://Main Menu/Settings/SettingsMenu.png" id="1_bvb5x"]
-[ext_resource type="Texture2D" uid="uid://cmou1ie0swky6" path="res://Main Menu/Settings/Gemini_Generated_Image_t2e2yft2e2yft2e2.png" id="2_rng3r"]
+[ext_resource type="Texture2D" path="res://Main Menu/Icons/CloseX.png" id="2_rng3r"]
 [ext_resource type="Script" uid="uid://dd45cbqvuf2ml" path="res://Main Menu/Settings/texture_button.gd" id="3_3d8ab"]
 [ext_resource type="FontFile" uid="uid://c3wayko015w8k" path="res://Main Menu/MysteryQuest-Regular.ttf" id="3_urc0d"]
 [ext_resource type="Script" uid="uid://2brju4je6x1t" path="res://Main Menu/Settings/settings_menu.gd" id="4_menu"]
@@ -144,7 +144,7 @@ anchor_bottom = 0.5
 offset_left = 76.0
 offset_top = -276.5
 offset_right = 169.0
-offset_bottom = -189.5
+offset_bottom = -183.5
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_rng3r")
