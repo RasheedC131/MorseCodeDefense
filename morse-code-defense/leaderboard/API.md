@@ -68,3 +68,14 @@ For any error status (4xx or 5xx), send `{ "error": "..." }` with a short messag
 curl "$BASE_URL/scores?limit=10"
 curl -X POST "$BASE_URL/scores" -H "Content-Type: application/json" -d '{"name":"ABC","score":1200}'
 ```
+
+## The website
+
+The project website shows the leaderboard with `website/leaderboard-widget.html`, which calls `GET /scores` from the visitor's browser. For that to work the server needs two more things:
+
+- **HTTPS.** The website is served over `https://`, and browsers block a secure page from calling a plain `http://` server.
+- **CORS on `GET /scores`.** Browsers only let another site read the reply if the server says it's allowed. Add this header to `GET /scores` replies (scores are public, so allowing any site is fine):
+  ```
+  Access-Control-Allow-Origin: *
+  ```
+  `POST /scores` doesn't need it while the game is a desktop download. If the game is also published as a browser (Web) build, `POST /scores` needs the same header, and the server must also answer the browser's `OPTIONS /scores` check with `Access-Control-Allow-Methods: GET, POST` and `Access-Control-Allow-Headers: Content-Type`.
