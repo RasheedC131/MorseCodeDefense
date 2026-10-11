@@ -1,0 +1,91 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://GameUI/Screens/wisteria_frame.gd" id="1_frame"]
+[ext_resource type="Texture2D" path="res://GameUI/Screens/Wisteria1.png" id="2_w1"]
+[ext_resource type="Texture2D" path="res://GameUI/Screens/Wisteria2.png" id="3_w2"]
+[ext_resource type="Texture2D" path="res://GameUI/Screens/Wisteria3.png" id="4_w3"]
+[ext_resource type="Texture2D" path="res://GameUI/Screens/Wisteria4.png" id="5_w4"]
+[ext_resource type="Texture2D" path="res://GameUI/Screens/Petal.png" id="6_petal"]
+
+[sub_resource type="Gradient" id="Gradient_fade"]
+offsets = PackedFloat32Array(0, 0.1, 0.75, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.9, 1, 1, 1, 0)
+
+[node name="WisteriaFrame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_frame")
+
+[node name="Petals" type="CPUParticles2D" parent="."]
+amount = 22
+lifetime = 9.0
+preprocess = 9.0
+texture = ExtResource("6_petal")
+emission_shape = 4
+direction = Vector2(0.4, 1)
+spread = 35.0
+gravity = Vector2(0, 14)
+initial_velocity_min = 8.0
+initial_velocity_max = 22.0
+angular_velocity_min = -70.0
+angular_velocity_max = 70.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.6
+scale_amount_max = 1.1
+color_ramp = SubResource("Gradient_fade")
+hue_variation_min = -0.04
+hue_variation_max = 0.04
+
+[node name="Clusters" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Wisteria1" type="TextureRect" parent="Clusters"]
+layout_mode = 1
+anchor_right = 0.10520833
+anchor_bottom = 0.33518517
+offset_top = -12.0
+mouse_filter = 2
+texture = ExtResource("2_w1")
+expand_mode = 1
+
+[node name="Wisteria2" type="TextureRect" parent="Clusters"]
+layout_mode = 1
+anchor_left = 0.32395834
+anchor_right = 0.42239583
+anchor_bottom = 0.19074073
+offset_top = -12.0
+mouse_filter = 2
+texture = ExtResource("3_w2")
+expand_mode = 1
+
+[node name="Wisteria3" type="TextureRect" parent="Clusters"]
+layout_mode = 1
+anchor_left = 0.59947914
+anchor_right = 0.72447914
+anchor_bottom = 0.20277777
+offset_top = -12.0
+mouse_filter = 2
+texture = ExtResource("4_w3")
+expand_mode = 1
+
+[node name="Wisteria4" type="TextureRect" parent="Clusters"]
+layout_mode = 1
+anchor_left = 0.86614585
+anchor_right = 1.0
+anchor_bottom = 0.31666666
+offset_top = -12.0
+mouse_filter = 2
+texture = ExtResource("5_w4")
+expand_mode = 1

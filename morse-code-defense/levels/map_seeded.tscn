@@ -1,0 +1,51 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://levels/seeded_level.gd" id="1_level"]
+[ext_resource type="PackedScene" path="res://Agents/TestLevel/player.tscn" id="2_player"]
+[ext_resource type="PackedScene" path="res://Agents/Enemy/Spawner/enemy_spawner.tscn" id="3_spawner"]
+[ext_resource type="Script" path="res://audio/scene_music.gd" id="4_music"]
+[ext_resource type="PackedScene" path="res://hud/game_hud.tscn" id="5_hud"]
+
+[node name="MapSeeded" type="Node2D"]
+script = ExtResource("1_level")
+use_leaderboard = false
+
+[node name="Placeholder" type="Node2D" parent="."]
+
+[node name="Rock" type="ColorRect" parent="Placeholder"]
+offset_right = 2048.0
+offset_bottom = 1152.0
+mouse_filter = 2
+color = Color(0.15, 0.1, 0.23, 1.0)
+
+[node name="Ground" type="Node2D" parent="Placeholder"]
+
+[node name="Navigation" type="NavigationRegion2D" parent="."]
+
+[node name="Art" type="Sprite2D" parent="."]
+visible = false
+centered = false
+
+[node name="Agents" type="Node2D" parent="."]
+
+[node name="Player" parent="Agents" instance=ExtResource("2_player")]
+position = Vector2(1024, 576)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("3_spawner")]
+scale = Vector2(1, 1)
+
+[node name="Marker2D4" type="Marker2D" parent="EnemySpawner"]
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(1024, 576)
+zoom = Vector2(0.8, 0.8)
+limit_left = 0
+limit_top = 0
+limit_right = 2048
+limit_bottom = 1152
+
+[node name="Music" type="Node" parent="."]
+script = ExtResource("4_music")
+track = "battle"
+
+[node name="GameHUD" parent="." instance=ExtResource("5_hud")]

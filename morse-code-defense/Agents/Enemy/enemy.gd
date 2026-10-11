@@ -48,10 +48,10 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 		
 
+# Enemies only stop to attack Lenny. Allies kill them by meeting them on the
+# path (see ally.gd), so enemies no longer stop to fight allies through walls.
 func _on_attack_range_body_entered(body: Node2D) -> void:
-	if body == rival or body is Player:
-		if body == rival:
-			rival.defeated.connect(_on_target_defeated)
+	if body is Player:
 		active_target = body
 		curr_speed = 0
 		attack_cooldown.start(attack_speed)

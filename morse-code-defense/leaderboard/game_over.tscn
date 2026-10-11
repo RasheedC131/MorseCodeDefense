@@ -1,8 +1,9 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://leaderboard/game_over.gd" id="1_go"]
-[ext_resource type="Theme" path="res://hud/menu_theme.tres" id="2_theme"]
-[ext_resource type="FontFile" uid="uid://dsaajhs1x4pyh" path="res://Main Menu/CinzelDecorative-Bold.ttf" id="3_font"]
+[ext_resource type="Theme" path="res://GameUI/Screens/sos_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" uid="uid://bwqlehpb77jim" path="res://GameUI/Health Bar/0Hearts.png" id="4_hearts"]
+[ext_resource type="PackedScene" path="res://GameUI/Screens/wisteria_frame.tscn" id="5_wisteria"]
 
 [node name="GameOver" type="CanvasLayer"]
 process_mode = 3
@@ -16,35 +17,50 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.65)
+theme = ExtResource("2_theme")
+color = Color(0.03, 0.05, 0.14, 0.78)
+
+[node name="Wisteria" parent="Dim" instance=ExtResource("5_wisteria")]
+layout_mode = 1
 
 [node name="Panel" type="PanelContainer" parent="Dim"]
-custom_minimum_size = Vector2(440, 0)
+custom_minimum_size = Vector2(500, 610)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -305.0
+offset_right = 250.0
+offset_bottom = 305.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_theme")
 
 [node name="Box" type="VBoxContainer" parent="Dim/Panel"]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="Hearts" type="TextureRect" parent="Dim/Panel/Box"]
+custom_minimum_size = Vector2(220, 74)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("4_hearts")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Title" type="Label" parent="Dim/Panel/Box"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.85, 0.65, 0.25, 1)
-theme_override_fonts/font = ExtResource("3_font")
-theme_override_font_sizes/font_size = 44
+theme_type_variation = &"TitleLabel"
 text = "GAME OVER"
 horizontal_alignment = 1
 
 [node name="Score" type="Label" parent="Dim/Panel/Box"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_font_sizes/font_size = 28
 text = "Score: 0"
 horizontal_alignment = 1
 
@@ -54,7 +70,7 @@ text = "Enter your name for the leaderboard"
 horizontal_alignment = 1
 
 [node name="Name" type="LineEdit" parent="Dim/Panel/Box"]
-custom_minimum_size = Vector2(180, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 placeholder_text = "ABC"
@@ -63,23 +79,22 @@ max_length = 3
 
 [node name="Hint" type="Label" parent="Dim/Panel/Box"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.7, 0.68, 0.62, 1)
-theme_override_font_sizes/font_size = 14
+theme_type_variation = &"HintLabel"
 text = "3 letters, numbers or symbols. Type it, or blink letters in Morse."
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Status" type="Label" parent="Dim/Panel/Box"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 17
 text = "3 more characters"
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Buttons" type="HBoxContainer" parent="Dim/Panel/Box"]
 layout_mode = 2
+theme_override_constants/separation = 12
 alignment = 1
-theme_override_constants/separation = 16
 
 [node name="Submit" type="Button" parent="Dim/Panel/Box/Buttons"]
 layout_mode = 2
@@ -89,3 +104,13 @@ text = "Submit"
 [node name="Skip" type="Button" parent="Dim/Panel/Box/Buttons"]
 layout_mode = 2
 text = "Skip"
+
+[node name="Restart" type="Button" parent="Dim/Panel/Box/Buttons"]
+visible = false
+layout_mode = 2
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="Dim/Panel/Box/Buttons"]
+visible = false
+layout_mode = 2
+text = "Main menu"
