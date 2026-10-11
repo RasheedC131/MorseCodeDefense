@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe08a"/>
+      <stop offset="1" stop-color="#c9902e"/>
+    </linearGradient>
+  </defs>
+  <!-- badge, same colors as the pause menu and leaderboard panels -->
+  <circle cx="64" cy="64" r="59" fill="#121216" fill-opacity="0.92" stroke="#d9a640" stroke-width="5"/>
+  <!-- handles -->
+  <path d="M40 40 H31 C19 40 19 63 42 65" fill="none" stroke="url(#gold)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M88 40 H97 C109 40 109 63 86 65" fill="none" stroke="url(#gold)" stroke-width="6" stroke-linecap="round"/>
+  <!-- cup -->
+  <path d="M38 32 H90 V46 C90 66 78 77 64 77 C50 77 38 66 38 46 Z" fill="url(#gold)"/>
+  <!-- stem and base -->
+  <path d="M58 77 H70 L72 90 H56 Z" fill="url(#gold)"/>
+  <rect x="45" y="90" width="38" height="8" rx="2" fill="url(#gold)"/>
+  <rect x="40" y="98" width="48" height="9" rx="2" fill="#b07a22"/>
+  <!-- shine -->
+  <path d="M47 39 V49 C47 59 52 66 57 69" fill="none" stroke="#fff6d0" stroke-opacity="0.65" stroke-width="4" stroke-linecap="round"/>
+  <!-- star on the cup -->
+  <path d="M64 42 L67 50 L75 50 L69 55 L71 63 L64 58 L57 63 L59 55 L53 50 L61 50 Z" fill="#fff3c4" fill-opacity="0.9"/>
+</svg>

@@ -16,6 +16,9 @@ const MINE_COLOR := Color(1, 0.85, 0.3)
 
 func _ready() -> void:
 	retry_button.pressed.connect(_load)
+	# Opened from the main menu's trophy button rather than after a run
+	if not Scenes._history.is_empty() and Scenes._history[-1] == "main_menu":
+		play_button.text = "Play"
 	play_button.pressed.connect(Scenes.go_to.bind("game"))
 	menu_button.pressed.connect(Scenes.go_to.bind("main_menu"))
 	var rank: int = Leaderboard.last_submitted.get("rank", 0)
