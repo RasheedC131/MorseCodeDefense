@@ -10,7 +10,6 @@ class_name EnemyData
 
 @export_category("Sprite")
 @export var scale: float = 1.0
-#@export var sprite_sheet: SpriteFrames
 
 @export_category("Points")
 @export var points: int = 500

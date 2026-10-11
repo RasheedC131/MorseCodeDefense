@@ -1,6 +1,43 @@
-[gd_resource type="Resource" script_class="AlleyData" format=3 uid="uid://jk6uk4v2ynj8"]
+[gd_resource type="Resource" script_class="AllyData" format=3 uid="uid://jk6uk4v2ynj8"]
 
 [ext_resource type="Script" uid="uid://be8p3a4c2t716" path="res://Agents/Ally/Ally Types/AllyData.gd" id="1_krhhl"]
+[ext_resource type="Texture2D" uid="uid://27jqboukc8js" path="res://characters/SpriteSheets/Petalborn.png" id="2_cgpf6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taqmy"]
+atlas = ExtResource("2_cgpf6")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo7uc"]
+atlas = ExtResource("2_cgpf6")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t0of"]
+atlas = ExtResource("2_cgpf6")
+region = Rect2(0, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_325xn"]
+atlas = ExtResource("2_cgpf6")
+region = Rect2(200, 200, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ieubk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taqmy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xo7uc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t0of")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_325xn")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_krhhl")
@@ -8,4 +45,5 @@ speed = 50.0
 max_health = 3
 attack_speed = 0.4
 scale = 0.3
+sprite_sheet = SubResource("SpriteFrames_ieubk")
 metadata/_custom_type_script = "uid://be8p3a4c2t716"

@@ -10,4 +10,3 @@ class_name AllyData
 
 @export_category("Sprite")
 @export var scale: float = 1.0
-#@export var sprite_sheet: SpriteFrames

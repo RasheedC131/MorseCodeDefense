@@ -1,11 +1,49 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://jok4jxdgebq7"]
 
 [ext_resource type="Script" uid="uid://c5luo1s7qwbdw" path="res://Agents/Enemy/Enemy Types/EnemyData.gd" id="1_snvxj"]
+[ext_resource type="Texture2D" uid="uid://d3ycm0ayr8i6y" path="res://characters/SpriteSheets/Collosus.png" id="2_7okot"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3nm0"]
+atlas = ExtResource("2_7okot")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqqqc"]
+atlas = ExtResource("2_7okot")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yks2j"]
+atlas = ExtResource("2_7okot")
+region = Rect2(0, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74f84"]
+atlas = ExtResource("2_7okot")
+region = Rect2(200, 200, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gb4tg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3nm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqqqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yks2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74f84")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_snvxj")
 speed = 15.0
 max_health = 5
 attack_speed = 1.0
+sprite_sheet = SubResource("SpriteFrames_gb4tg")
 points = 5000
 metadata/_custom_type_script = "uid://c5luo1s7qwbdw"

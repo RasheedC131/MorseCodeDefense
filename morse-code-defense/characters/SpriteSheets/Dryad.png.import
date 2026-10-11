@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bcg3207f1gemi"
-path="res://.godot/imported/Blight.png-3ecaaf1f4fed1b21698ea0802c6aa58d.ctex"
+path="res://.godot/imported/Dryad.png-64763f46ac35f435b2d1ad9d20695ef6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/SpriteSheets/Blight.png"
-dest_files=["res://.godot/imported/Blight.png-3ecaaf1f4fed1b21698ea0802c6aa58d.ctex"]
+source_file="res://characters/SpriteSheets/Dryad.png"
+dest_files=["res://.godot/imported/Dryad.png-64763f46ac35f435b2d1ad9d20695ef6.ctex"]
 
 [params]
 

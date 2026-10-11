@@ -1,10 +1,48 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://cmuh34hh7l0uf"]
 
 [ext_resource type="Script" uid="uid://c5luo1s7qwbdw" path="res://Agents/Enemy/Enemy Types/EnemyData.gd" id="1_os7rf"]
+[ext_resource type="Texture2D" uid="uid://b8v8ls2dlqoy6" path="res://characters/SpriteSheets/Chomper.png" id="2_0pi8a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1jvy"]
+atlas = ExtResource("2_0pi8a")
+region = Rect2(0, 0, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4lbk"]
+atlas = ExtResource("2_0pi8a")
+region = Rect2(200, 0, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ib2h2"]
+atlas = ExtResource("2_0pi8a")
+region = Rect2(0, 250, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2rrof"]
+atlas = ExtResource("2_0pi8a")
+region = Rect2(200, 250, 200, 250)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ieubk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1jvy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4lbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ib2h2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2rrof")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_os7rf")
 speed = 50.0
 scale = 0.3
+sprite_sheet = SubResource("SpriteFrames_ieubk")
 points = 1000
 metadata/_custom_type_script = "uid://c5luo1s7qwbdw"

@@ -7,6 +7,9 @@ signal defeated()
 @onready var letter_label := $"Letter Label" as Label
 @onready var attack_range := $"Attack Range" as Area2D
 @onready var attack_cooldown := $"AttackCooldown" as Timer
+@onready var sprite_2d := $AnimatedSprite2D as AnimatedSprite2D
+@export var sprites : Array[SpriteFrames]
+
 var target_letter : String
 var is_helping : bool
 var active_target : Enemy
@@ -17,10 +20,11 @@ var max_health : int = 3
 var curr_health : int
 var attack_speed : float
 
-
 func _ready() -> void:
 	letter_label.text = target_letter
 	curr_health = max_health
+	sprite_2d.sprite_frames = sprites[randi() % sprites.size()]
+	sprite_2d.play("default")
 	
 	find_target()
 	

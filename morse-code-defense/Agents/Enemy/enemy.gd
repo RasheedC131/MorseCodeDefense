@@ -10,7 +10,8 @@ signal defeated()
 @onready var morse_label := $"Morse Label" as Label
 @onready var attack_range := $"Attack Range" as Area2D
 @onready var attack_cooldown := $"AttackCooldown" as Timer
-
+@onready var sprite_2d := $AnimatedSprite2D as AnimatedSprite2D
+@export var sprites : Array[SpriteFrames]
 
 var rival : Ally
 var active_target: Node2D
@@ -26,11 +27,16 @@ var curr_health : int
 var attack_speed : float
 var points : int
 
+
 func _ready() -> void:
 	letter_label.text = letter
 	morse_label.text = morse
 	curr_speed = speed
 	curr_health = max_health
+	
+	sprite_2d.sprite_frames = sprites[randi() % sprites.size()]
+	sprite_2d.play("default")
+	
 	
 	var player = get_tree().get_first_node_in_group("player")
 	if is_instance_valid(player):

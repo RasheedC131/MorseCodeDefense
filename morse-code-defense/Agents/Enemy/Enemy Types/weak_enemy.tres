@@ -1,10 +1,48 @@
 [gd_resource type="Resource" script_class="EnemyData" format=3 uid="uid://w5ff1eukjerb"]
 
 [ext_resource type="Script" uid="uid://c5luo1s7qwbdw" path="res://Agents/Enemy/Enemy Types/EnemyData.gd" id="1_wne2n"]
+[ext_resource type="Texture2D" uid="uid://bpiipejc03rho" path="res://characters/SpriteSheets/Spora.png" id="2_ckkya"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffakb"]
+atlas = ExtResource("2_ckkya")
+region = Rect2(0, 0, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ers3"]
+atlas = ExtResource("2_ckkya")
+region = Rect2(200, 0, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqdik"]
+atlas = ExtResource("2_ckkya")
+region = Rect2(0, 250, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hirqc"]
+atlas = ExtResource("2_ckkya")
+region = Rect2(200, 250, 200, 250)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mox0q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffakb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ers3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqdik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hirqc")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [resource]
 script = ExtResource("1_wne2n")
 max_health = 1
 attack_speed = 0.25
 scale = 0.15
+sprite_sheet = SubResource("SpriteFrames_mox0q")
 metadata/_custom_type_script = "uid://c5luo1s7qwbdw"

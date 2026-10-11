@@ -1,15 +1,79 @@
 [gd_scene format=3 uid="uid://j6wvf2l2rhsm"]
 
-[ext_resource type="Texture2D" uid="uid://bde0cuq6c2jse" path="res://icon.svg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://tv25s6ng0l5c" path="res://Agents/TestLevel/player.gd" id="1_benua"]
 [ext_resource type="Script" uid="uid://be8p3a4c2t716" path="res://Agents/Ally/Ally Types/AllyData.gd" id="2_1x6c6"]
 [ext_resource type="Resource" uid="uid://bt6tagcy7ln5n" path="res://Agents/Ally/Ally Types/weak_ally.tres" id="3_nxgf8"]
 [ext_resource type="Resource" uid="uid://jk6uk4v2ynj8" path="res://Agents/Ally/Ally Types/basic_ally.tres" id="4_lm6dw"]
 [ext_resource type="Resource" uid="uid://c8sprne8wtoa0" path="res://Agents/Ally/Ally Types/tough_ally.tres" id="5_8mg1j"]
 [ext_resource type="Resource" uid="uid://dsvg3kbtxqnc6" path="res://Agents/Ally/Ally Types/boss_ally.tres" id="6_a3ct5"]
+[ext_resource type="Texture2D" uid="uid://dlabw3ggxo1am" path="res://characters/SpriteSheets/Lenny.png" id="7_1x6c6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uvkxl"]
 size = Vector2(128, 129)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nxgf8"]
+atlas = ExtResource("7_1x6c6")
+region = Rect2(0, 0, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lm6dw"]
+atlas = ExtResource("7_1x6c6")
+region = Rect2(200, 0, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mg1j"]
+atlas = ExtResource("7_1x6c6")
+region = Rect2(400, 0, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a3ct5"]
+atlas = ExtResource("7_1x6c6")
+region = Rect2(0, 250, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68go0"]
+atlas = ExtResource("7_1x6c6")
+region = Rect2(200, 250, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndb0q"]
+atlas = ExtResource("7_1x6c6")
+region = Rect2(400, 250, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgn0o"]
+atlas = ExtResource("7_1x6c6")
+region = Rect2(0, 500, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgx4n"]
+atlas = ExtResource("7_1x6c6")
+region = Rect2(200, 500, 200, 250)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uvkxl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nxgf8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lm6dw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mg1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a3ct5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68go0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndb0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgn0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgx4n")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D" unique_id=189627708 groups=["player"]]
 scale = Vector2(0.3, 0.3)
@@ -18,12 +82,15 @@ collision_mask = 3
 script = ExtResource("1_benua")
 ally_tier_data = Array[ExtResource("2_1x6c6")]([ExtResource("3_nxgf8"), ExtResource("4_lm6dw"), ExtResource("5_8mg1j"), ExtResource("6_a3ct5")])
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=692678304]
-texture = ExtResource("1_4flbx")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=871478792]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_uvkxl")
 
 [node name="Ally Spawner" type="Marker2D" parent="." unique_id=2050086545]
 position = Vector2(0, 163.33331)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1562632427]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_uvkxl")
+autoplay = "default"
+frame_progress = 0.11622484
