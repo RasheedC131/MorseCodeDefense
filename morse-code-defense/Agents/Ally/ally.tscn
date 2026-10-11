@@ -1,21 +1,24 @@
 [gd_scene format=3 uid="uid://vq0riwp5o5gk"]
 
 [ext_resource type="Script" uid="uid://bw28n8ygqrql7" path="res://Agents/Ally/ally.gd" id="1_mox0q"]
-[ext_resource type="Texture2D" uid="uid://bde0cuq6c2jse" path="res://icon.svg" id="1_u33wv"]
+[ext_resource type="Script" path="res://characters/character_sprite.gd" id="cs_sprite"]
+[ext_resource type="SpriteFrames" path="res://characters/DELETEANDREPLACEME/DELETEANDREPLACEME_frames.tres" id="cs_frames"]
 [ext_resource type="PackedScene" uid="uid://e2danx30eh0" path="res://Agents/Path Finder/path_finder.tscn" id="3_ieubk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvkxl"]
 radius = 30.265491
 
-[node name="Ally" type="CharacterBody2D" unique_id=994462329]
+[node name="Ally" type="CharacterBody2D" unique_id=994462329 groups=["ally"]]
 scale = Vector2(0.3, 0.3)
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_mox0q")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2103033573 groups=["ally"]]
-modulate = Color(0, 0.78655785, 7.70092e-07, 1)
-texture = ExtResource("1_u33wv")
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("cs_frames")
+animation = &"idle"
+script = ExtResource("cs_sprite")
+placeholder_tint = Color(0, 0.78655785, 7.70092e-07, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1089764345]
 shape = SubResource("CircleShape2D_uvkxl")

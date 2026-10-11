@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://j6wvf2l2rhsm"]
 
-[ext_resource type="Texture2D" uid="uid://bde0cuq6c2jse" path="res://icon.svg" id="1_4flbx"]
+[ext_resource type="Script" path="res://characters/character_sprite.gd" id="cs_sprite"]
+[ext_resource type="SpriteFrames" path="res://characters/DELETEANDREPLACEME/DELETEANDREPLACEME_frames.tres" id="cs_frames"]
 [ext_resource type="Script" uid="uid://tv25s6ng0l5c" path="res://Agents/TestLevel/player.gd" id="1_benua"]
 [ext_resource type="Script" path="res://Agents/health.gd" id="2_health"]
 
@@ -13,8 +14,11 @@ collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_benua")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=692678304]
-texture = ExtResource("1_4flbx")
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("cs_frames")
+animation = &"idle"
+script = ExtResource("cs_sprite")
+placeholder_tint = Color(0.55, 0.75, 1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=871478792]
 position = Vector2(0, 0.5)
