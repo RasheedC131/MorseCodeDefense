@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dgkqf421blvc2" path="res://Main Menu/main_menu.gd" id="6_menu"]
 [ext_resource type="Texture2D" path="res://Main Menu/Icons/Leaderboard.png" id="7_trophy"]
 [ext_resource type="Texture2D" uid="uid://cxsfmummui1v2" path="res://Main Menu/Rock.png" id="9_616t6"]
+[ext_resource type="Script" path="res://Main Menu/knight_helmet.gd" id="10_knight"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_grh7o"]
 shader = ExtResource("3_87fhq")
@@ -75,6 +76,21 @@ func _ready():
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
 "
 
+[sub_resource type="Gradient" id="Gradient_eyeglow"]
+offsets = PackedFloat32Array(0, 0.25, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.55, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eyeglow"]
+gradient = SubResource("Gradient_eyeglow")
+width = 64
+height = 64
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_add"]
+blend_mode = 1
+
 [node name="Control" type="Control" unique_id=1155235894]
 layout_mode = 3
 anchors_preset = 15
@@ -90,6 +106,39 @@ offset_right = 1153.0
 offset_bottom = 650.0
 texture = ExtResource("2_ye3th")
 expand_mode = 1
+
+[node name="KnightHelmet" type="Control" parent="Background"]
+layout_mode = 0
+offset_left = 910.0
+offset_top = 285.0
+offset_right = 990.0
+offset_bottom = 350.0
+tooltip_text = "Explore a new map"
+script = ExtResource("10_knight")
+
+[node name="LeftHalo" type="Sprite2D" parent="Background/KnightHelmet"]
+material = SubResource("CanvasItemMaterial_add")
+position = Vector2(30.4, 43.6)
+scale = Vector2(0.36, 0.26)
+texture = SubResource("GradientTexture2D_eyeglow")
+
+[node name="RightHalo" type="Sprite2D" parent="Background/KnightHelmet"]
+material = SubResource("CanvasItemMaterial_add")
+position = Vector2(41.8, 44.2)
+scale = Vector2(0.36, 0.26)
+texture = SubResource("GradientTexture2D_eyeglow")
+
+[node name="LeftEye" type="Sprite2D" parent="Background/KnightHelmet"]
+material = SubResource("CanvasItemMaterial_add")
+position = Vector2(30.4, 43.6)
+scale = Vector2(0.2, 0.16)
+texture = SubResource("GradientTexture2D_eyeglow")
+
+[node name="RightEye" type="Sprite2D" parent="Background/KnightHelmet"]
+material = SubResource("CanvasItemMaterial_add")
+position = Vector2(41.8, 44.2)
+scale = Vector2(0.2, 0.16)
+texture = SubResource("GradientTexture2D_eyeglow")
 
 [node name="Play" type="TextureButton" parent="." unique_id=888933529]
 layout_mode = 1

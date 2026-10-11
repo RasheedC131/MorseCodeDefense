@@ -17,4 +17,7 @@ const SCENES := {
 	"eye_detection_test": "res://addons/Eye Detection/Example Scene/example.tscn",
 	"leaderboard": "res://leaderboard/leaderboard.tscn", # shown after Game over
 	"sound_test": "res://audio/sound_test.tscn",
+	"map_center": "res://levels/map_center.tscn", # Lenny in the middle, 4 winding tunnels
+	"map_classic": "res://levels/map_classic.tscn", # Lenny at the bottom, enemies from 3 sides
+	"map_seeded": "res://levels/map_seeded.tscn", # big map, tunnels generated from a seed
 }
