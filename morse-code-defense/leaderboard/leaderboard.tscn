@@ -1,17 +1,10 @@
 [gd_scene format=3 uid="uid://c7av6b22w4ben"]
 
 [ext_resource type="Script" uid="uid://yrfxaitx7eyp" path="res://leaderboard/leaderboard.gd" id="1_lb"]
-[ext_resource type="Theme" uid="uid://x7q0fh0iqdnv" path="res://hud/menu_theme.tres" id="2_theme"]
-[ext_resource type="FontFile" uid="uid://dsaajhs1x4pyh" path="res://Main Menu/CinzelDecorative-Bold.ttf" id="3_font"]
-[ext_resource type="Texture2D" uid="uid://b43lise510ga2" path="res://Main Menu/Ench_Forest.jpg" id="4_bg"]
+[ext_resource type="Theme" path="res://GameUI/Screens/sos_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" uid="uid://c7ccjdgauudfs" path="res://Main Menu/Background.png" id="4_bg"]
 [ext_resource type="Script" uid="uid://d2nbxguos85jh" path="res://audio/scene_music.gd" id="5_music"]
-[ext_resource type="FontFile" uid="uid://c3wayko015w8k" path="res://Main Menu/MysteryQuest-Regular.ttf" id="5_qaj7g"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ye3th"]
-font = ExtResource("5_qaj7g")
-
-[sub_resource type="LabelSettings" id="LabelSettings_xq18m"]
-font = ExtResource("5_qaj7g")
+[ext_resource type="PackedScene" path="res://GameUI/Screens/wisteria_frame.tscn" id="6_wisteria"]
 
 [node name="Leaderboard" type="Control" unique_id=1723025931]
 layout_mode = 3
@@ -20,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_theme")
 script = ExtResource("1_lb")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1597565894]
@@ -42,29 +36,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0.45)
+color = Color(0.03, 0.06, 0.16, 0.4)
+
+[node name="Wisteria" parent="." instance=ExtResource("6_wisteria")]
+layout_mode = 1
 
 [node name="Panel" type="PanelContainer" parent="." unique_id=565847576]
-custom_minimum_size = Vector2(440, 0)
+custom_minimum_size = Vector2(500, 620)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -310.0
+offset_right = 250.0
+offset_bottom = 310.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_theme")
 
 [node name="Box" type="VBoxContainer" parent="Panel" unique_id=954585667]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 8
+alignment = 1
 
 [node name="Title" type="Label" parent="Panel/Box" unique_id=306027028]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.85, 0.65, 0.25, 1)
-theme_override_fonts/font = ExtResource("3_font")
-theme_override_font_sizes/font_size = 44
+theme_type_variation = &"TitleLabel"
 text = "LEADERBOARD"
 horizontal_alignment = 1
 
@@ -72,27 +71,25 @@ horizontal_alignment = 1
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
-theme_override_font_sizes/font_size = 20
-label_settings = SubResource("LabelSettings_ye3th")
+theme_override_font_sizes/font_size = 22
 horizontal_alignment = 1
 
 [node name="Rows" type="GridContainer" parent="Panel/Box" unique_id=507946752]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/h_separation = 24
-theme_override_constants/v_separation = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 2
 columns = 3
 
 [node name="Status" type="Label" parent="Panel/Box" unique_id=1792075234]
 layout_mode = 2
 text = "Loading..."
-label_settings = SubResource("LabelSettings_xq18m")
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Buttons" type="HBoxContainer" parent="Panel/Box" unique_id=956158867]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 alignment = 1
 
 [node name="Retry" type="Button" parent="Panel/Box/Buttons" unique_id=1116822132]

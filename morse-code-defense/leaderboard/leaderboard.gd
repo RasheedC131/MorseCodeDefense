@@ -3,8 +3,9 @@ extends Control
 ## session highlighted. Scores come from the Leaderboard autoload.
 
 const SHOWN := 10
-const HEADER_COLOR := Color(0.85, 0.65, 0.25)
+const HEADER_COLOR := Color(0.95, 0.76, 0.35)
 const MINE_COLOR := Color(1, 0.85, 0.3)
+const ROW_COLOR := Color(0.96, 0.93, 0.82)
 
 @export var entry_font: Font = preload("res://Main Menu/MysteryQuest-Regular.ttf")  # adjust path
 
@@ -54,7 +55,7 @@ func _load() -> void:
 		var is_mine: bool = not found_mine and not mine.is_empty() \
 				and str(entry.name) == mine.name and int(entry.score) == mine.score
 		found_mine = found_mine or is_mine
-		_add_row("#%d" % (i + 1), str(entry.name), str(int(entry.score)), MINE_COLOR if is_mine else Color.WHITE)
+		_add_row("#%d" % (i + 1), str(entry.name), str(int(entry.score)), MINE_COLOR if is_mine else ROW_COLOR)
 
 
 func _add_row(rank: String, player_name: String, score: String, color: Color) -> void:
@@ -64,6 +65,6 @@ func _add_row(rank: String, player_name: String, score: String, color: Color) ->
 		label.add_theme_font_override("font", entry_font)
 		label.custom_minimum_size.x = cell[1]
 		label.horizontal_alignment = cell[2]
-		label.add_theme_font_size_override("font_size", 22)
-		label.modulate = color
+		label.add_theme_font_size_override("font_size", 20)
+		label.add_theme_color_override("font_color", color)
 		rows.add_child(label)

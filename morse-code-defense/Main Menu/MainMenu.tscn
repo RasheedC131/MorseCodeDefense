@@ -297,6 +297,7 @@ offset_top = 17.0
 offset_right = 339.95752
 offset_bottom = 340.0
 grow_horizontal = 2
+mouse_filter = 2
 texture = ExtResource("5_ye3th")
 expand_mode = 1
 script = SubResource("GDScript_iwfq2")
