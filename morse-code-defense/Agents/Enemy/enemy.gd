@@ -37,7 +37,7 @@ func _ready() -> void:
 	
 	sprite_2d.sprite_frames = sprites[randi() % sprites.size()]
 	sprite_2d.play("default")
-	
+	LetterBadge.show_enemy(letter_label, morse_label, self, sprite_2d)
 	
 	var player = get_tree().get_first_node_in_group("player")
 	if is_instance_valid(player):

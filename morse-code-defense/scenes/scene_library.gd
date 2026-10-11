@@ -18,6 +18,7 @@ const SCENES := {
 	"calibration": "res://computer_vision/calibration.tscn", # blink calibration, opened from Settings
 	"eye_detection_test": "res://addons/Eye Detection/Example Scene/example.tscn",
 	"leaderboard": "res://leaderboard/leaderboard.tscn", # shown after Game over
+	"instructions": "res://GameUI/Screens/instructions.tscn", # How to Play, from the main menu
 	"sound_test": "res://audio/sound_test.tscn",
 	"map_center": "res://levels/map_center.tscn", # Lenny in the middle, 4 winding tunnels
 	"map_classic": "res://levels/map_classic.tscn", # Lenny at the bottom, enemies from 3 sides
