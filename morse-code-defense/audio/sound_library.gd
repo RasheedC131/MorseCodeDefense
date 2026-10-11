@@ -36,7 +36,10 @@ const SFX := {
 		"file": "res://audio/sfx/ally/sent.wav",
 	},
 	"ally_died": {
-		"file": "res://audio/sfx/ally/died.ogg",
+		"file": [ # one picked at random each time
+			"res://audio/sfx/ally/died.ogg",
+			"res://audio/sfx/ally/Death2.ogg",
+		],
 		"pitch_range": 0.1,
 	},
 
