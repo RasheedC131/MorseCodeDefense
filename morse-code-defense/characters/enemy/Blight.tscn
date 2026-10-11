@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://bixvxpxa3slc8"]
+
+[ext_resource type="Texture2D" uid="uid://bcg3207f1gemi" path="res://characters/SpriteSheets/Blight.png" id="1_oy5ei"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxoa8"]
+atlas = ExtResource("1_oy5ei")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eilmq"]
+atlas = ExtResource("1_oy5ei")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4bchw"]
+atlas = ExtResource("1_oy5ei")
+region = Rect2(0, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ub2kx"]
+atlas = ExtResource("1_oy5ei")
+region = Rect2(200, 200, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grh7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxoa8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eilmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4bchw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ub2kx")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqc6p"]
+radius = 25.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1122586053]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=67051632]
+position = Vector2(68.99999, 58.999996)
+scale = Vector2(0.33, 0.33)
+sprite_frames = SubResource("SpriteFrames_grh7o")
+frame = 2
+frame_progress = 0.3871778
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=431810399]
+position = Vector2(68, 64)
+shape = SubResource("CircleShape2D_oqc6p")

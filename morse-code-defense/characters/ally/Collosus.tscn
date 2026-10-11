@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cmpfecteovj3h"]
+
+[ext_resource type="Texture2D" uid="uid://d3ycm0ayr8i6y" path="res://characters/SpriteSheets/Collosus.png" id="1_cynq6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvqjs"]
+atlas = ExtResource("1_cynq6")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nomsg"]
+atlas = ExtResource("1_cynq6")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck30q"]
+atlas = ExtResource("1_cynq6")
+region = Rect2(0, 200, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hw6hf"]
+atlas = ExtResource("1_cynq6")
+region = Rect2(200, 200, 200, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grh7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvqjs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nomsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ck30q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hw6hf")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqc6p"]
+radius = 18.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=21405382]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=937166858]
+position = Vector2(156, 147)
+scale = Vector2(0.33, 0.33)
+sprite_frames = SubResource("SpriteFrames_grh7o")
+frame_progress = 0.585819
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=568495875]
+position = Vector2(156, 146)
+shape = SubResource("CircleShape2D_oqc6p")

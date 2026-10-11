@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://btqcib2o6pmk6"]
+
+[ext_resource type="Texture2D" uid="uid://bpiipejc03rho" path="res://characters/SpriteSheets/Spora.png" id="1_fv21l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk4gm"]
+atlas = ExtResource("1_fv21l")
+region = Rect2(0, 0, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq8ih"]
+atlas = ExtResource("1_fv21l")
+region = Rect2(200, 0, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4p34"]
+atlas = ExtResource("1_fv21l")
+region = Rect2(0, 250, 200, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jipm"]
+atlas = ExtResource("1_fv21l")
+region = Rect2(200, 250, 200, 250)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grh7o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk4gm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oq8ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4p34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jipm")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqc6p"]
+radius = 34.04
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1182907433]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1104785140]
+position = Vector2(219, 118)
+scale = Vector2(0.33, 0.33)
+sprite_frames = SubResource("SpriteFrames_grh7o")
+frame_progress = 0.9666109
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1791702957]
+position = Vector2(221, 120)
+shape = SubResource("CircleShape2D_oqc6p")
