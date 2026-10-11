@@ -6,6 +6,8 @@ const SHOWN := 10
 const HEADER_COLOR := Color(0.85, 0.65, 0.25)
 const MINE_COLOR := Color(1, 0.85, 0.3)
 
+@export var entry_font: Font = preload("res://Main Menu/MysteryQuest-Regular.ttf")  # adjust path
+
 @onready var rows: GridContainer = $Panel/Box/Rows
 @onready var status: Label = $Panel/Box/Status
 @onready var placed: Label = $Panel/Box/Placed
@@ -59,6 +61,7 @@ func _add_row(rank: String, player_name: String, score: String, color: Color) ->
 	for cell in [[rank, 70, HORIZONTAL_ALIGNMENT_LEFT], [player_name, 110, HORIZONTAL_ALIGNMENT_CENTER], [score, 120, HORIZONTAL_ALIGNMENT_RIGHT]]:
 		var label := Label.new()
 		label.text = cell[0]
+		label.add_theme_font_override("font", entry_font)
 		label.custom_minimum_size.x = cell[1]
 		label.horizontal_alignment = cell[2]
 		label.add_theme_font_size_override("font_size", 22)
