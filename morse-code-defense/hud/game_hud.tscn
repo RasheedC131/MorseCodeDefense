@@ -1,26 +1,27 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://d1chksle0xf82"]
 
-[ext_resource type="Script" path="res://hud/game_hud.gd" id="1_hud"]
-[ext_resource type="Script" path="res://computer_vision/morse_parser.gd" id="2_parser"]
-[ext_resource type="Script" path="res://addons/Eye Detection/python_results.gd" id="3_eyes"]
-[ext_resource type="Script" path="res://addons/Eye Detection/camera.gd" id="4_preview"]
-[ext_resource type="Script" path="res://GameUI/Health Bar/health_bar.gd" id="5_hearts"]
-[ext_resource type="Texture2D" uid="uid://c2lg2dlfyvlyi" path="res://GameUI/Health Bar/HealthBarFull.png" id="6_full"]
-[ext_resource type="Texture2D" uid="uid://wj1s1wah0m2u" path="res://GameUI/Health Bar/HealthBarEmpty.png" id="7_empty"]
-[ext_resource type="Texture2D" uid="uid://bd7m6gy64nw8a" path="res://GameUI/Health Bar/HealthBar2Thirds.png" id="8_one"]
-[ext_resource type="Texture2D" uid="uid://brkimq868qtgr" path="res://GameUI/Health Bar/HealthBar1Third.png" id="9_two"]
+[ext_resource type="Script" uid="uid://b15rgdwpbubi0" path="res://hud/game_hud.gd" id="1_hud"]
+[ext_resource type="Script" uid="uid://8aqp60cjmmgk" path="res://computer_vision/morse_parser.gd" id="2_parser"]
+[ext_resource type="Script" uid="uid://dupgl3gqi50lm" path="res://addons/Eye Detection/python_results.gd" id="3_eyes"]
+[ext_resource type="Texture2D" uid="uid://dc8h5frhq22u1" path="res://Banner.png" id="4_2s5eb"]
+[ext_resource type="Script" uid="uid://iult0dhysvm" path="res://addons/Eye Detection/camera.gd" id="4_preview"]
+[ext_resource type="Script" uid="uid://wc4twada3v1g" path="res://GameUI/Health Bar/health_bar.gd" id="5_hearts"]
+[ext_resource type="Texture2D" uid="uid://coarirly112b1" path="res://GameUI/Health Bar/3Hearts.png" id="5_icrny"]
+[ext_resource type="Texture2D" uid="uid://bwqlehpb77jim" path="res://GameUI/Health Bar/0Hearts.png" id="7_d8j6h"]
+[ext_resource type="Texture2D" uid="uid://duy84sylhkl5k" path="res://GameUI/Health Bar/1Heart.png" id="8_anfpl"]
+[ext_resource type="Texture2D" uid="uid://cptw8od0c2q6v" path="res://GameUI/Health Bar/2Hearts.png" id="9_yheqv"]
 [ext_resource type="PackedScene" path="res://hud/pause_menu.tscn" id="10_pause"]
 [ext_resource type="PackedScene" path="res://leaderboard/game_over.tscn" id="11_gameover"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar"]
 bg_color = Color(0.07, 0.07, 0.09, 0.9)
 
-[node name="GameHUD" type="CanvasLayer"]
+[node name="GameHUD" type="CanvasLayer" unique_id=412692219]
 process_mode = 3
-layer = 10
+layer = 12
 script = ExtResource("1_hud")
 
-[node name="EyeDetection" type="Node" parent="."]
+[node name="EyeDetection" type="Node" parent="." unique_id=815754692]
 script = ExtResource("3_eyes")
 visualize_stream = true
 type_of_stream = 1
@@ -29,43 +30,43 @@ color_of_left_eye = Color(0.78039217, 0.92156863, 0.92156863, 1)
 color_of_right_eye2 = Color(0.39215687, 0.101960786, 0.85882354, 1)
 color_of_left_eye2 = Color(0.39215687, 0.101960786, 0.85882354, 1)
 
-[node name="MorseParser" type="Node" parent="."]
+[node name="MorseParser" type="Node" parent="." unique_id=1429230689]
 process_mode = 1
 script = ExtResource("2_parser")
 
-[node name="TopBar" type="PanelContainer" parent="."]
+[node name="TopBar" type="PanelContainer" parent="." unique_id=1074661011]
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 64.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bar")
 
-[node name="Margin" type="MarginContainer" parent="TopBar"]
+[node name="Margin" type="MarginContainer" parent="TopBar" unique_id=1803557190]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 4
 
-[node name="Row" type="HBoxContainer" parent="TopBar/Margin"]
+[node name="Row" type="HBoxContainer" parent="TopBar/Margin" unique_id=684409204]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Sequence" type="Label" parent="TopBar/Margin/Row"]
+[node name="Sequence" type="Label" parent="TopBar/Margin/Row" unique_id=1382919280]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 28
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Letter" type="Label" parent="TopBar/Margin/Row"]
+[node name="Letter" type="Label" parent="TopBar/Margin/Row" unique_id=1941624767]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BottomBar" type="PanelContainer" parent="."]
+[node name="BottomBar" type="PanelContainer" parent="." unique_id=1245069929]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -75,30 +76,37 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_bar")
 
-[node name="Margin" type="MarginContainer" parent="BottomBar"]
+[node name="Margin" type="MarginContainer" parent="BottomBar" unique_id=519439073]
 layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 4
 
-[node name="Alphabet" type="HBoxContainer" parent="BottomBar/Margin"]
+[node name="Alphabet" type="HBoxContainer" parent="BottomBar/Margin" unique_id=1537048585]
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="Hearts" type="TextureRect" parent="."]
+[node name="Banner" type="TextureRect" parent="." unique_id=609711036]
+offset_right = 1153.0
+offset_bottom = 647.0
+texture = ExtResource("4_2s5eb")
+expand_mode = 1
+
+[node name="Hearts" type="TextureRect" parent="." unique_id=750807366]
+z_as_relative = false
 offset_left = 12.0
 offset_top = 4.0
 offset_right = 216.0
 offset_bottom = 60.0
 mouse_filter = 2
-texture = ExtResource("6_full")
+texture = ExtResource("5_icrny")
 expand_mode = 1
 stretch_mode = 4
 script = ExtResource("5_hearts")
-heart_textures = Array[Texture2D]([ExtResource("7_empty"), ExtResource("8_one"), ExtResource("9_two"), ExtResource("6_full")])
+heart_textures = Array[Texture2D]([ExtResource("7_d8j6h"), ExtResource("8_anfpl"), ExtResource("9_yheqv"), ExtResource("5_icrny")])
 
-[node name="EyesPreview" type="TextureRect" parent="." node_paths=PackedStringArray("eye_sensor")]
+[node name="EyesPreview" type="TextureRect" parent="." unique_id=1140817005 node_paths=PackedStringArray("eye_sensor")]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -114,7 +122,7 @@ script = ExtResource("4_preview")
 eye_sensor = NodePath("../EyeDetection")
 crop_to_eyes = true
 
-[node name="Loading" type="ColorRect" parent="."]
+[node name="Loading" type="ColorRect" parent="." unique_id=1630108740]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -123,7 +131,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.07, 0.07, 0.09, 1)
 
-[node name="Box" type="VBoxContainer" parent="Loading"]
+[node name="Box" type="VBoxContainer" parent="Loading" unique_id=1009085188]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -138,21 +146,21 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="Loading/Box"]
+[node name="Title" type="Label" parent="Loading/Box" unique_id=1954818763]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Starting camera..."
 horizontal_alignment = 1
 
-[node name="Message" type="Label" parent="Loading/Box"]
+[node name="Message" type="Label" parent="Loading/Box" unique_id=458035330]
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "Look at the screen so the camera can find your eyes."
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="PauseMenu" parent="." instance=ExtResource("10_pause")]
+[node name="PauseMenu" parent="." unique_id=1034344479 instance=ExtResource("10_pause")]
 
-[node name="GameOver" parent="." instance=ExtResource("11_gameover")]
+[node name="GameOver" parent="." unique_id=1524808098 instance=ExtResource("11_gameover")]
 
 [connection signal="telemetry_received" from="EyeDetection" to="MorseParser" method="_on_eye_detection_telemetry_received"]

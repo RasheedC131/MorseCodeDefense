@@ -18,11 +18,14 @@ var ally_scene = preload("res://Agents/Ally/ally.tscn")
 var max_health : int = 3
 var curr_health: int
 
+signal health_changed(hearts: int)
+signal died
+
 func _ready() -> void:
+	add_to_group("player")
+	curr_health = max_health
 	if is_instance_valid(game_hud):
 		game_hud.letter_decoded.connect(_on_letter_decoded)
-	
-	curr_health = max_health
 
 #Spawn Ally
 func _on_letter_decoded(letter: String) -> void:
@@ -43,9 +46,8 @@ func _on_letter_decoded(letter: String) -> void:
 	
 	current_scene.add_child(ally)
 
-func take_damage(damage : int):
-	curr_health -= damage
-	
-	if curr_health <= 0:
-		#Endgame
-		print("dead")
+func take_damage(damage: int) -> void:
+	curr_health = max(curr_health - damage, 0)
+	health_changed.emit(curr_health)
+	if curr_health == 0:
+		died.emit()

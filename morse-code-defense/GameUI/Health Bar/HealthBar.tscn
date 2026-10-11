@@ -4,18 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://wj1s1wah0m2u" path="res://GameUI/Health Bar/HealthBarEmpty.png" id="2_khp6w"]
 [ext_resource type="Texture2D" uid="uid://bd7m6gy64nw8a" path="res://GameUI/Health Bar/HealthBar2Thirds.png" id="3_27j1t"]
 [ext_resource type="Texture2D" uid="uid://brkimq868qtgr" path="res://GameUI/Health Bar/HealthBar1Third.png" id="4_uhsrf"]
-[ext_resource type="Script" path="res://GameUI/Health Bar/health_bar.gd" id="5_hb"]
+[ext_resource type="Script" uid="uid://wc4twada3v1g" path="res://GameUI/Health Bar/health_bar.gd" id="5_hb"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=22087245]
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="." unique_id=1955143251]
+[node name="Control" type="Control" parent="." unique_id=1053304435]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Control" type="Control" parent="AspectRatioContainer" unique_id=1053304435]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer/Control" unique_id=1618856845]
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=1618856845]
 layout_mode = 1
 offset_top = 5.0
 offset_right = 306.0
