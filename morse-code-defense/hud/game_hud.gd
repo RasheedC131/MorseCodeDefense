@@ -11,6 +11,10 @@ class_name GameHUD
 ## A finished letter from blinks or the keyboard, e.g. "A".
 signal letter_decoded(letter: String)
 
+## The run's score. Gameplay adds to it with add_score(); when the player runs
+## out of hearts it's what goes on the leaderboard.
+var score := 0
+
 const DIM := 0.25 # opacity of alphabet letters that no longer match
 const MATCH_COLOR := Color(1.0, 0.85, 0.3)
 const ERROR_COLOR := Color(1.0, 0.4, 0.4)
@@ -28,10 +32,13 @@ const CAMERA_ERRORS := ["CNF", "COC", "MLC", "IE"]
 @onready var loading_title: Label = $Loading/Box/Title
 @onready var loading_message: Label = $Loading/Box/Message
 @onready var hearts: HealthBar = $Hearts
+@onready var pause_menu: CanvasLayer = $PauseMenu
+@onready var game_over = $GameOver
 
 var _cells := {} # morse code -> alphabet cell
 var _letter_tween: Tween
 var _waiting_for_camera := false
+var _run_over := false
 
 
 func _ready() -> void:
@@ -121,7 +128,8 @@ func _on_sequence_changed(sequence: String) -> void:
 
 func _on_letter_decoded(letter: String) -> void:
 	_show_letter(letter, Color.WHITE)
-	letter_decoded.emit(letter)
+	if not _run_over: # after death, letters spell the leaderboard name instead
+		letter_decoded.emit(letter)
 
 
 func _on_invalid_sequence(_sequence: String) -> void:
@@ -149,6 +157,20 @@ func _show_player_health() -> void:
 	hearts.max_hearts = health.max_hearts
 	hearts.set_health(health.hearts)
 	health.health_changed.connect(hearts.set_health)
+	health.died.connect(_on_player_died)
+
+
+func add_score(points: int) -> void:
+	score += points
+
+
+# Freezes the level, lets the death sound play, then asks for a leaderboard name.
+func _on_player_died() -> void:
+	_run_over = true
+	pause_menu.set_process_unhandled_input(false)
+	get_tree().paused = true
+	await get_tree().create_timer(1.5).timeout
+	game_over.open(score, parser)
 
 
 # ".-" -> "• —" (spaced, top bar) or "•–" (compact, alphabet), easier to read at a glance
