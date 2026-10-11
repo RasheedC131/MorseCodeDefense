@@ -14,7 +14,7 @@ extends Node
 const BUSES: Array[String] = ["Music", "SFX", "UI"]
 const POOL_SIZE := 16
 const MUSIC_FADE_TIME := 1.0
-const MUSIC_VOLUME := 0.5 # background music plays at half volume under the sound effects
+const MUSIC_VOLUME := 0.25 # background music plays at a quarter volume under the sound effects
 
 var _pool: Array[AudioStreamPlayer] = []
 var _next_in_pool := 0
