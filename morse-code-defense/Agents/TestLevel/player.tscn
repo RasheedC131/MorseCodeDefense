@@ -87,7 +87,7 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_uvkxl")
 
 [node name="Ally Spawner" type="Marker2D" parent="." unique_id=2050086545]
-position = Vector2(0, 163.33331)
+position = Vector2(0, -179.99998)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1562632427]
 texture_filter = 1
