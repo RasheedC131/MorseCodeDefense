@@ -1,5 +1,8 @@
 extends Node2D
 
+## A word wave just spawned, e.g. "SOS" (the HUD shows it).
+signal word_spawned(word: String)
+
 const MORSE_DICT = {
 	".-": "A", "-...": "B", "-.-.": "C", "-..": "D",
 	 ".": "E", "..-.": "F", "--.": "G", "....": "H",
@@ -25,17 +28,27 @@ const TIER_WEIGHTS = {
 }
 
 @export var enemy_tier_data: Array[EnemyData] = []
+## Every this many kills, a whole word spawns: one enemy per letter, at the
+## entrances from left to right, so it reads in order. 0 turns words off.
+@export var word_every := 10
 @onready var current_scene = get_tree().current_scene
 var enemy_scene = preload("res://Agents/Enemy/enemy.tscn")
 var spawnpoints := []
+# Spawn points still to use this round (see next_spawnpoint)
+var _spawn_bag := []
+var _last_spawnpoint: Marker2D
+var _kills := 0
+var _word_bag: Array[String] = []
 
 #Fill Spawnpoints array
 func _ready() -> void:
+	add_to_group("enemy_spawner") # lets the HUD announce word waves
 	for i in get_children():
 		if i is Marker2D:
 			spawnpoints.append(i)
 	
-	spawn_enemy()
+	# Deferred: the level is still adding its children when this runs
+	spawn_enemy.call_deferred()
 
 #Spawn Enemy
 func _on_timer_timeout() -> void:
@@ -43,14 +56,17 @@ func _on_timer_timeout() -> void:
 
 
 func spawn_enemy():
-	var curr_spawnpoint = spawnpoints[randi() % spawnpoints.size()]
+	var curr_spawnpoint = next_spawnpoint()
+	spawn_letter(get_weight_balanced_letter(), curr_spawnpoint.global_position)
+
+# One enemy for `letter` at `at`; its stats come from its Morse length.
+func spawn_letter(letter: String, at: Vector2) -> void:
 	var enemy = enemy_scene.instantiate() as Enemy
-	enemy.position = curr_spawnpoint.global_position
+	enemy.position = at
 	
-	var balanced_letter = get_weight_balanced_letter()
-	var morse_key = MORSE_DICT.find_key(balanced_letter)
+	var morse_key = MORSE_DICT.find_key(letter)
 	
-	enemy.letter = balanced_letter
+	enemy.letter = letter
 	enemy.morse = morse_key
 	
 	var morse_len : int = morse_key.length()
@@ -61,7 +77,58 @@ func spawn_enemy():
 	enemy.attack_speed = stats["attack_speed"]
 	enemy.scale = Vector2(stats["scale"], stats["scale"])
 	enemy.points = stats["points"]
+	enemy.defeated.connect(_on_enemy_defeated.bind(enemy))
 	current_scene.add_child(enemy)
+
+# Counts kills by allies (enemies that reach Lenny don't count) and sends a
+# word every `word_every` kills.
+func _on_enemy_defeated(enemy: Enemy) -> void:
+	if enemy.has_meta("counted"):
+		return # take_damage can report the same death twice
+	enemy.set_meta("counted", true)
+	_kills += 1
+	if word_every > 0 and _kills % word_every == 0:
+		spawn_word.call_deferred()
+
+# Spawns the next word from WordList, first letter at the leftmost entrance and
+# last letter at the rightmost. Shorter words skip middle entrances.
+func spawn_word() -> void:
+	var word := next_word()
+	if word == "":
+		return
+	var entrances := spawnpoints.duplicate()
+	entrances.sort_custom(func(a, b): return a.global_position.x < b.global_position.x)
+	for i in word.length():
+		var index := 0
+		if word.length() > 1:
+			index = roundi(i * (entrances.size() - 1) / float(word.length() - 1))
+		spawn_letter(word[i], entrances[index].global_position)
+	word_spawned.emit(word)
+
+# Words come from a shuffled bag too, so none repeats until all have been
+# used. Only words with no more letters than this map has entrances.
+func next_word() -> String:
+	if _word_bag.is_empty():
+		for word in WordList.WORDS:
+			if word.length() <= spawnpoints.size():
+				_word_bag.append(word)
+		_word_bag.shuffle()
+	return _word_bag.pop_back() if not _word_bag.is_empty() else ""
+
+# Shuffle bag: every spawn point is used once, in a random order, before any
+# repeats, and the same one never comes twice in a row (even across rounds),
+# so enemies spread across the entrances instead of clumping at one.
+func next_spawnpoint() -> Marker2D:
+	if _spawn_bag.is_empty():
+		_spawn_bag = spawnpoints.duplicate()
+		_spawn_bag.shuffle()
+		# pop_back() takes the last one; don't let it be the one just used
+		if _spawn_bag.size() > 1 and _spawn_bag[-1] == _last_spawnpoint:
+			var swap = _spawn_bag[0]
+			_spawn_bag[0] = _spawn_bag[-1]
+			_spawn_bag[-1] = swap
+	_last_spawnpoint = _spawn_bag.pop_back()
+	return _last_spawnpoint
 
 func get_weight_balanced_letter() -> String:
 		#Add up weights
