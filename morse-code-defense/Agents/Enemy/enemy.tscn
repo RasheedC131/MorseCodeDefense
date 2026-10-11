@@ -169,6 +169,10 @@ sprites = Array[SpriteFrames]([SubResource("SpriteFrames_15su8"), SubResource("S
 shape = SubResource("CircleShape2D_4gyqm")
 
 [node name="PathFinder" parent="." unique_id=542989051 instance=ExtResource("3_4ekhx")]
+avoidance_enabled = true
+max_neighbors = 1
+avoidance_layers = 3
+avoidance_mask = 3
 
 [node name="Attack Range" type="Area2D" parent="." unique_id=976499173]
 collision_mask = 3
