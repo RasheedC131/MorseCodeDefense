@@ -49,6 +49,7 @@ func _ready() -> void:
 	_show_player_health()
 	_on_sequence_changed("")
 	letter_label.text = ""
+	_show_player_health.call_deferred()
 	_wait_for_camera()
 
 
@@ -149,15 +150,14 @@ func _show_letter(text: String, color: Color) -> void:
 
 # Hooks the hearts up to the player's Health node, if the level has one.
 func _show_player_health() -> void:
-	var player := get_tree().get_first_node_in_group("player")
-	var health: Health = player.get_node_or_null("Health") if player else null
-	if health == null:
+	var player := get_tree().get_first_node_in_group("player") as Player
+	if player == null:
 		hearts.hide()
 		return
-	hearts.max_hearts = health.max_hearts
-	hearts.set_health(health.hearts)
-	health.health_changed.connect(hearts.set_health)
-	health.died.connect(_on_player_died)
+	hearts.max_hearts = player.max_health
+	hearts.set_health(player.curr_health)
+	player.health_changed.connect(hearts.set_health)
+	player.died.connect(_on_player_died)
 
 
 func add_score(points: int) -> void:

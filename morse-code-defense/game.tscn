@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://j6wvf2l2rhsm" path="res://Agents/TestLevel/player.tscn" id="2_feb5d"]
 [ext_resource type="PackedScene" uid="uid://c1362cix2eytc" path="res://Agents/Enemy/Spawner/enemy_spawner.tscn" id="4_fc0e3"]
 [ext_resource type="Script" uid="uid://d2nbxguos85jh" path="res://audio/scene_music.gd" id="5_music"]
-[ext_resource type="PackedScene" path="res://hud/game_hud.tscn" id="6_hud"]
+[ext_resource type="PackedScene" uid="uid://d1chksle0xf82" path="res://hud/game_hud.tscn" id="6_hud"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uvkxl"]
 vertices = PackedVector2Array(466, 46, 466, 302, 462, 238, 462, 50, 466, 306, 466, 466, 462, 430, 462, 322, 318, 318, 318, 210, 338, 242, 338, 430, 190, 366, 210, 318, 190, 226, 210, 222, 146, 222, 82, 226, 306, 46, 274, 50, 46, 466, 222, 46, 222, 30, 306, 30, 254, 50, 542, 302, 542, 30, 802, 30, 802, 506, 542, 506, 542, 306, 446, 322, 446, 242, 338, 238, 338, 190, 274, 190, 254, 210, 66, 50, 46, 46, 46, 286, 66, 158, 114, 158, 114, 174, 146, 174, 66, 258, 82, 258, 66, 306, 50, 306, 174, 398, 174, 366, -30, 306, -30, 506, -290, 506, -290, 30, -30, 30, -30, 286, 46, 306, 50, 398)
